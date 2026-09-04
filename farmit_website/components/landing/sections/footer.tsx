@@ -137,7 +137,7 @@ export default function Footer({
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/35">
-            © {new Date().getFullYear()} FarmIT AI. All rights reserved.
+            © {new Date().getFullYear()} FarmIt AI. All rights reserved.
           </p>
           <p className="text-xs font-medium text-white/40">Zimbabwe</p>
         </div>
@@ -149,7 +149,7 @@ export default function Footer({
           className="w-full select-none whitespace-nowrap text-center font-extrabold leading-[0.8] tracking-[-0.07em] text-lime"
           style={{ fontSize: "calc(100vw / 6.15)" }}
         >
-          FarmIT AI
+          FarmIt AI
         </p>
       </div>
     </footer>

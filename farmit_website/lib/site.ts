@@ -3,14 +3,14 @@ const whatsappNumber =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "";
 
 const defaultMessage = encodeURIComponent(
-  "Hello FarmIT AI — I would like farming advice."
+  "Hello FarmIt AI — I would like farming advice."
 );
 
 export const site = {
-  name: "FarmIT AI",
+  name: "FarmIt AI",
   tagline: "AI farming assistant for Zimbabwe",
   description:
-    "FarmIT AI helps Zimbabwean farmers diagnose crop diseases and get practical treatment advice on WhatsApp.",
+    "FarmIt AI helps Zimbabwean farmers diagnose crop diseases and get practical treatment advice on WhatsApp.",
   waitlistPath: "/waitlist",
   privacyPath: "/privacy",
   termsPath: "/terms",

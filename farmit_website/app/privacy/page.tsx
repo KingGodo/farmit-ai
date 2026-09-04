@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Privacy Policy — ${site.name}`,
   description:
-    "How FarmIT AI collects and uses personal information from the waiting list and the FarmIT service.",
+    "How FarmIt AI collects and uses personal information from the waiting list and the FarmIt service.",
 };
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
     <LegalLayout title="Privacy Policy" updated="26 August 2026">
       <LegalSection title="Who we are">
         <p>
-          FarmIT AI (“FarmIT”, “we”, “us”) provides an AI farming assistant
+          FarmIt AI (“FarmIt”, “we”, “us”) provides an AI farming assistant
           for Zimbabwean farmers. This policy explains how we handle personal
           information when you use this website or join the waiting list. The
           waiting list is collected on this website only, not through WhatsApp.
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           <li>Farming type</li>
         </ul>
         <p>
-          We do not ask for payment details on this site. When you use FarmIT
+          We do not ask for payment details on this site. When you use FarmIt
           on WhatsApp, we may also process leaf photos and chat messages to
           provide crop advice. We will keep this policy current as the
           service expands.
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
         <ul className="list-disc space-y-1 pl-5">
           <li>Hold your place and contact you to complete registration</li>
           <li>Understand which districts and crops to support</li>
-          <li>Improve FarmIT for Zimbabwean farmers</li>
+          <li>Improve FarmIt for Zimbabwean farmers</li>
         </ul>
         <p>
           We do not sell your information. We do not use it for unrelated
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
         <p>
           Waiting-list information is stored so we can reach you and complete
           registration. Access is limited to people who need it to run
-          FarmIT.
+          FarmIt.
         </p>
         <p>
           We may use trusted service providers (for example hosting or email)
@@ -65,14 +65,14 @@ export default function PrivacyPage() {
         </p>
         <p>
           We may share information if the law requires it, or to protect
-          farmers, FarmIT, or others from harm.
+          farmers, FarmIt, or others from harm.
         </p>
       </LegalSection>
 
       <LegalSection title="How long we keep it">
         <p>
           We keep waiting-list details until you ask us to delete them, or
-          until they are no longer needed to provide FarmIT — whichever comes
+          until they are no longer needed to provide FarmIt — whichever comes
           first. If you become a registered user, that account will follow the
           policy in force at that time.
         </p>
@@ -101,14 +101,14 @@ export default function PrivacyPage() {
 
       <LegalSection title="Children">
         <p>
-          FarmIT is intended for farmers and farm businesses. Do not join the
+          FarmIt is intended for farmers and farm businesses. Do not join the
           waiting list on behalf of a child under 16.
         </p>
       </LegalSection>
 
       <LegalSection title="Changes">
         <p>
-          We may update this policy as FarmIT grows. The “Last updated” date at
+          We may update this policy as FarmIt grows. The “Last updated” date at
           the top will change when we do. Continued use of the site after an
           update means you accept the revised policy.
         </p>

@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
           <div className="max-w-xl">
             <p className="animate-rise inline-flex items-center rounded-md border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold tracking-[0.04em] text-white/95 backdrop-blur-sm">
-              FarmIT AI · Farming for Zimbabwe
+              FarmIt AI · Farming for Zimbabwe
             </p>
             <h1 className="animate-rise-delay mt-4 text-[clamp(1.5rem,3.8vw,2.35rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-white">
               Crop advice on your WhatsApp.

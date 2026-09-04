@@ -53,7 +53,7 @@ async function postJson(url: string, body: unknown) {
     error?: { message?: string };
   } | null;
   if (!response.ok || !payload?.success) {
-    throw new Error(payload?.error?.message ?? "Could not reach FarmIT.");
+    throw new Error(payload?.error?.message ?? "Could not reach FarmIt.");
   }
   return payload.data;
 }

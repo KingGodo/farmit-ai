@@ -1,4 +1,4 @@
-/** Normalise Zimbabwe (and E.164) phone numbers for the FarmIT API. */
+/** Normalise Zimbabwe (and E.164) phone numbers for the FarmIt API. */
 export function toE164(raw: string): string | null {
   const trimmed = raw.trim().replace(/[\s()-]/g, "");
   if (/^\+[1-9]\d{7,14}$/.test(trimmed)) {

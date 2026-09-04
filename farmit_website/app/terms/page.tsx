@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Terms of Use — ${site.name}`,
   description:
-    "Terms for using the FarmIT AI website and joining the waiting list.",
+    "Terms for using the FarmIt AI website and joining the waiting list.",
 };
 
 export default function TermsPage() {
@@ -14,19 +14,19 @@ export default function TermsPage() {
     <LegalLayout title="Terms of Use" updated="26 August 2026">
       <LegalSection title="Agreement">
         <p>
-          These terms govern this website and the FarmIT waiting list. By using
+          These terms govern this website and the FarmIt waiting list. By using
           the site or submitting the waiting-list form, you agree to them. If
           you do not agree, do not use the site.
         </p>
         <p>
-          FarmIT is a production service. Joining the waiting list does not
+          FarmIt is a production service. Joining the waiting list does not
           create a paid contract or guarantee a specific start date.
         </p>
       </LegalSection>
 
       <LegalSection title="The service">
         <p>
-          FarmIT helps Zimbabwean farmers diagnose crop problems from a leaf
+          FarmIt helps Zimbabwean farmers diagnose crop problems from a leaf
           photo and get practical treatment guidance on WhatsApp.
         </p>
         <p>
@@ -63,14 +63,14 @@ export default function TermsPage() {
         <ul className="list-disc space-y-1 pl-5">
           <li>Misuse the site, attempt to break it, or overload it</li>
           <li>Submit other people’s information without their consent</li>
-          <li>Use FarmIT content as if it were certified agronomic advice</li>
-          <li>Copy the site or FarmIT branding for a competing service</li>
+          <li>Use FarmIt content as if it were certified agronomic advice</li>
+          <li>Copy the site or FarmIt branding for a competing service</li>
         </ul>
       </LegalSection>
 
       <LegalSection title="Intellectual property">
         <p>
-          The FarmIT name, logo, website, and content belong to FarmIT AI. You
+          The FarmIt name, logo, website, and content belong to FarmIt AI. You
           may not copy or reuse them except as allowed by law (for example
           fair quotation).
         </p>
@@ -86,7 +86,7 @@ export default function TermsPage() {
 
       <LegalSection title="Limitation of liability">
         <p>
-          To the fullest extent allowed by Zimbabwean law, FarmIT AI is not
+          To the fullest extent allowed by Zimbabwean law, FarmIt AI is not
           liable for crop loss, missed treatment, or other damages arising from
           use of this website or from waiting-list communications. Nothing in
           these terms limits liability that cannot be limited by law.
@@ -95,7 +95,7 @@ export default function TermsPage() {
 
       <LegalSection title="Changes">
         <p>
-          We may change these terms as FarmIT develops. The “Last updated”
+          We may change these terms as FarmIt develops. The “Last updated”
           date will change when we do. If you continue to use the site after a
           change, the new terms apply.
         </p>

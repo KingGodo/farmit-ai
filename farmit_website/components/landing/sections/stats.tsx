@@ -43,7 +43,7 @@ export default function Stats() {
             </h2>
           </div>
           <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-            FarmIT AI helps Zimbabwean farmers cut crop losses with faster
+            FarmIt AI helps Zimbabwean farmers cut crop losses with faster
             advice — before disease spreads.
           </p>
         </div>

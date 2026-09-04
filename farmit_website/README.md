@@ -1,6 +1,6 @@
-# FarmIT public website
+# FarmIt public website
 
-Next.js landing site for FarmIT — WhatsApp-first AI farming assistant for Zimbabwe.
+Next.js landing site for FarmIt — WhatsApp-first AI farming assistant for Zimbabwe.
 
 ## Setup
 

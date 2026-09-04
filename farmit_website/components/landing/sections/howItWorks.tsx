@@ -36,7 +36,7 @@ export default function HowItWorks() {
             Help that feels like a normal chat.
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/65">
-            FarmIT crop advice will live in WhatsApp. The waiting list itself
+            FarmIt crop advice will live in WhatsApp. The waiting list itself
             is only on this website. Join here, then we contact you.
           </p>
 

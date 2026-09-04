@@ -90,7 +90,7 @@ export function waitlistSuccessCopy(input: WaitlistSuccessInput) {
     return {
       kicker: "Still holding",
       title: `${first}, you’re already in ${place}`,
-      body: `This phone is already on the FarmIT waiting list on this website. When ${place} opens, we still reach you on that number or email.`,
+      body: `This phone is already on the FarmIt waiting list on this website. When ${place} opens, we still reach you on that number or email.`,
     };
   }
 
@@ -98,7 +98,7 @@ export function waitlistSuccessCopy(input: WaitlistSuccessInput) {
     return {
       kicker: `Standing with ${place}`,
       title: `${first}, ${place} agronomists are in`,
-      body: `You’re on the agronomist list for ${place}. FarmIT opens district by district from this website. When your district is ready, we contact you — then you can stand with farmers on the ground.`,
+      body: `You’re on the agronomist list for ${place}. FarmIt opens district by district from this website. When your district is ready, we contact you — then you can stand with farmers on the ground.`,
     };
   }
 

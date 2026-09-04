@@ -17,7 +17,7 @@ export default function Features() {
             </h2>
           </div>
           <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-            FarmIT AI is an agritech platform for Zimbabwean farmers. Send a
+            FarmIt AI is an agritech platform for Zimbabwean farmers. Send a
             leaf photo on WhatsApp and get practical chemical and organic
             treatment advice — so disease doesn’t wait for an extension visit.
           </p>
@@ -48,7 +48,7 @@ export default function Features() {
                 WhatsApp crop assistance
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Ask a question or send a leaf photo any time — FarmIT AI replies in
+                Ask a question or send a leaf photo any time — FarmIt AI replies in
                 chat.
               </p>
             </div>

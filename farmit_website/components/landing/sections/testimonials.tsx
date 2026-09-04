@@ -1,7 +1,7 @@
 const testimonials = [
   {
     quote:
-      "I sent a photo of my maize leaves and got clear advice the same afternoon. Before FarmIT AI I would wait days for someone to visit.",
+      "I sent a photo of my maize leaves and got clear advice the same afternoon. Before FarmIt AI I would wait days for someone to visit.",
     name: "Tendai Moyo",
     place: "Mazowe District",
     role: "Smallholder farmer",
@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     quote:
-      "WhatsApp is already on my phone. FarmIT AI felt easy — no new app, no confusing screens. Just a chat that helps protect my crop.",
+      "WhatsApp is already on my phone. FarmIt AI felt easy — no new app, no confusing screens. Just a chat that helps protect my crop.",
     name: "Chiedza Ncube",
     place: "Gweru Rural",
     role: "Maize grower",
@@ -33,7 +33,7 @@ const testimonials = [
   },
   {
     quote:
-      "FarmIT AI replied while I was still in the field. That speed saved me from treating the wrong problem.",
+      "FarmIt AI replied while I was still in the field. That speed saved me from treating the wrong problem.",
     name: "Farai Sibanda",
     place: "Bulawayo Rural",
     role: "Maize grower",
@@ -49,7 +49,7 @@ const testimonials = [
   },
   {
     quote:
-      "Extension officers are far from us. FarmIT AI fills that gap when we need help the same day.",
+      "Extension officers are far from us. FarmIt AI fills that gap when we need help the same day.",
     name: "Tafadzwa Gumbo",
     place: "Murehwa",
     role: "Smallholder farmer",
@@ -145,7 +145,7 @@ export default function Testimonials() {
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            Feedback from farmers using FarmIT AI on WhatsApp across Zimbabwe.
+            Feedback from farmers using FarmIt AI on WhatsApp across Zimbabwe.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Join the waiting list — ${site.name}`,
   description:
-    "Join the FarmIT waiting list on this website. Share your details and we will contact you.",
+    "Join the FarmIt waiting list on this website. Share your details and we will contact you.",
 };
 
 const points = [
@@ -37,7 +37,7 @@ export default function WaitlistPage() {
 
           <div className="relative z-10 px-5 pb-5 pt-20 text-white sm:px-8 sm:pb-6 sm:pt-24 lg:flex lg:h-full lg:flex-col lg:justify-end lg:px-10 lg:pb-10 lg:pt-28 xl:px-12">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-lime">
-              FarmIT AI
+              FarmIt AI
             </p>
             <p className="mt-3 max-w-sm text-lg font-semibold leading-snug tracking-[-0.03em] sm:text-xl lg:mt-4 lg:text-2xl">
               Hold a place for your district on this website.
@@ -69,7 +69,7 @@ export default function WaitlistPage() {
               Request access
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              FarmIT serves farmers in Zimbabwe. The waiting list is only on
+              FarmIt serves farmers in Zimbabwe. The waiting list is only on
               this website — not WhatsApp. Leave your district and crop. We’ll
               contact you by phone or email.
             </p>

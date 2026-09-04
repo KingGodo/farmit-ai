@@ -27,7 +27,7 @@ const SCRIPT: Turn[] = [
   { from: "user", text: "Hie. Yellow spots on my maize leaves." },
   {
     from: "bot",
-    text: "Hi. I am **FarmIT**, your farming assistant for Zimbabwe.\n\nSend a clear photo of the affected leaf — front and back if you can.",
+    text: "Hi. I am **FarmIt**, your farming assistant for Zimbabwe.\n\nSend a clear photo of the affected leaf — front and back if you can.",
   },
   { from: "user", text: "Sent the photo." },
   {
@@ -276,7 +276,7 @@ export default function WhatsAppPreview() {
             </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-[15px] font-semibold leading-tight text-white">
-                Farmit
+                FarmIt
               </p>
               <p className="text-[11px] leading-tight text-[#8696a0]">
                 {headerTyping ? "typing…" : "online"}
