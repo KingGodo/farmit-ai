@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "farmitai-db (Docker)",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "farmitai-db",
+      "Username": "postgres",
+      "SSLMode": "prefer"
+    }
+  }
+}
