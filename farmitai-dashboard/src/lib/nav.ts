@@ -94,7 +94,7 @@ export function resolvePage(pathname: string) {
       page.prefix === "/"
         ? pathname === "/"
         : pathname === page.prefix || pathname.startsWith(`${page.prefix}/`)
-    ) ?? { title: "FarmIT", kicker: "Operations" }
+    ) ?? { title: "FarmIt", kicker: "Operations" }
   );
 }
 

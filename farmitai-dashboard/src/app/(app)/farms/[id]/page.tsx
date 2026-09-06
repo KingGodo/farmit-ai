@@ -40,7 +40,7 @@ export default async function FarmDetailPage({
           <div>
             <dt className="text-[12px] text-faint">Farmer</dt>
             <dd className="mt-1">
-              <Link href={`/farmers/${farm.farmerId}`} className="text-[13px] font-medium hover:text-primary">
+              <Link href={`/farmers/${farm.farmerId}`} className="text-[13px] font-medium hover:text-forest">
                 {farm.farmerName}
               </Link>
             </dd>

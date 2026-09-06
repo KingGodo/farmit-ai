@@ -28,7 +28,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-dvh bg-background">
-      <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-border bg-card md:flex md:flex-col">
+      <aside className="sticky top-0 hidden h-dvh w-56 shrink-0 border-r border-border bg-background md:flex md:flex-col">
         <Sidebar pathname={pathname} onNavigate={() => setOpen(false)} />
       </aside>
 
@@ -36,18 +36,18 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-40 md:hidden">
           <button
             type="button"
-            className="absolute inset-0 bg-black/40"
+            className="absolute inset-0 bg-ink/20"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
           />
-          <aside className="relative z-50 flex h-full w-64 flex-col border-r border-border bg-card">
+          <aside className="relative z-50 flex h-full w-56 flex-col border-r border-border bg-background">
             <Sidebar pathname={pathname} onNavigate={() => setOpen(false)} />
           </aside>
         </div>
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-4 border-b border-border bg-card px-4 md:px-6">
+        <header className="sticky top-0 z-20 flex h-12 shrink-0 items-center gap-3 border-b border-border bg-background/85 px-4 backdrop-blur-xl md:px-5">
           <Button
             variant="ghost"
             size="icon"
@@ -57,12 +57,13 @@ export function AppShell({ children }: { children: ReactNode }) {
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </Button>
 
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted-foreground">{page.kicker}</p>
-            <h1 className="truncate text-base font-semibold tracking-[-0.02em]">{page.title}</h1>
+          <div className="flex min-w-0 flex-1 items-baseline gap-2">
+            <h1 className="truncate text-[13px] font-semibold tracking-[-0.02em]">{page.title}</h1>
+            <span className="hidden text-[12px] text-faint sm:inline">{page.kicker}</span>
           </div>
 
           <HeaderSearch />
+          <div className="hidden h-5 w-px bg-border sm:block" />
           <UserMenu email={me.data?.email} onSignOut={logout} />
         </header>
 

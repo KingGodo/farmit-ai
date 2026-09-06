@@ -141,7 +141,7 @@ export type DummyAudit = {
 export const dummyUsers: DummyUser[] = [
   {
     id: "usr_admin",
-    name: "FarmIT Admin",
+    name: "FarmIt Admin",
     email: "admin@farmit.co.zw",
     phone: "+263700000000",
     role: "ADMIN",

@@ -67,7 +67,7 @@ export default async function FarmerDetailPage({
                 className={`flex items-center justify-between gap-4 px-4 py-3 ${index !== 0 ? "border-t border-border" : ""}`}
               >
                 <div>
-                  <Link href={`/farms/${farm.id}`} className="text-[13px] font-medium hover:text-primary">
+                  <Link href={`/farms/${farm.id}`} className="text-[13px] font-medium hover:text-forest">
                     {farm.name}
                   </Link>
                   <p className="text-[12px] text-muted-foreground">

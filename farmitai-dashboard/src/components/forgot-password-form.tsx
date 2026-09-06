@@ -31,7 +31,7 @@ export function ForgotPasswordForm() {
       }
       setSent(true);
     } catch {
-      setError("Could not reach FarmIT. Is the API running?");
+      setError("Could not reach FarmIt. Is the API running?");
     } finally {
       setSubmitting(false);
     }
@@ -49,11 +49,11 @@ export function ForgotPasswordForm() {
           account, we sent a reset link. It expires in 30 minutes.
         </p>
         <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
-          Locally, the link is printed in the FarmIT API terminal.
+          Locally, the link is printed in the FarmIt API terminal.
         </p>
         <Link
           href="/login"
-          className="mt-6 inline-flex h-11 items-center gap-2 text-[13px] font-medium text-primary"
+          className="mt-6 inline-flex h-11 items-center gap-2 text-[13px] font-medium text-forest"
         >
           <ArrowLeft className="size-4" />
           Back to sign in

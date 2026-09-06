@@ -74,7 +74,7 @@ export function SampleDirectory<T extends { id: string }>({
                 className={cn(
                   "h-7 rounded-md px-2.5 text-[13px] transition-colors duration-150 ease-[var(--ease-craft)]",
                   filter === item.id
-                    ? "bg-muted font-medium text-foreground"
+                    ? "bg-lime font-semibold text-ink"
                     : "font-normal text-muted-foreground hover:text-foreground"
                 )}
               >
@@ -122,7 +122,7 @@ export function SampleDirectory<T extends { id: string }>({
                       {index === 0 && href ? (
                         <Link
                           href={href(row)}
-                          className="font-medium text-foreground transition-colors duration-150 hover:text-primary"
+                          className="font-medium text-foreground transition-colors duration-150 hover:text-forest"
                         >
                           {column.cell(row)}
                         </Link>

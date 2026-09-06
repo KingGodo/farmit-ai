@@ -34,7 +34,7 @@ export function LoginForm() {
       router.push("/");
       router.refresh();
     } catch {
-      setError("Could not reach FarmIT. Is the API running?");
+      setError("Could not reach FarmIt. Is the API running?");
     } finally {
       setSubmitting(false);
     }
@@ -65,7 +65,7 @@ export function LoginForm() {
         action={
           <Link
             href="/forgot-password"
-            className="text-[12px] font-medium text-primary transition-colors duration-150 ease-[var(--ease-craft)] hover:text-primary/80"
+            className="text-[12px] font-medium text-forest transition-colors duration-150 ease-[var(--ease-craft)] hover:text-forest-deep"
           >
             Forgot password?
           </Link>

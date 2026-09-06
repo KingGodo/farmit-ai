@@ -70,15 +70,43 @@ function NavLink({
       href={item.href}
       onClick={onNavigate}
       className={cn(
-        "flex h-9 items-center gap-3 rounded-md px-3 text-sm transition-colors",
+        "flex h-8 items-center gap-2 rounded-md px-2 text-[12px] transition-[color,background-color] duration-150 ease-[var(--ease-craft)]",
         active
-          ? "bg-muted font-medium text-foreground"
-          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          ? "bg-soft font-medium text-ink"
+          : "font-normal text-muted-foreground hover:bg-soft hover:text-ink"
       )}
     >
-      <Icon className="size-4 shrink-0" strokeWidth={1.75} />
+      <Icon
+        className={cn("size-3.5 shrink-0", active ? "text-ink" : "text-faint")}
+        strokeWidth={1.75}
+      />
       {item.label}
     </Link>
+  );
+}
+
+function NavSection({
+  label,
+  items,
+  pathname,
+  onNavigate,
+}: {
+  label: string;
+  items: NavItem[];
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  return (
+    <div>
+      <p className="px-2 pb-1 text-[10px] font-medium uppercase tracking-[0.12em] text-faint">
+        {label}
+      </p>
+      <div className="flex flex-col gap-px">
+        {items.map((item) => (
+          <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onNavigate} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -91,39 +119,38 @@ export function Sidebar({
 }) {
   return (
     <>
-      <div className="flex h-16 shrink-0 items-center gap-2.5 border-b border-border px-4">
-        <Image src={logo} alt="FarmIT" className="size-8 rounded-md" />
-        <div className="min-w-0">
-          <p className="text-sm font-semibold">FarmIT</p>
-          <p className="text-xs text-muted-foreground">Admin</p>
-        </div>
-      </div>
+      <Link href="/" onClick={onNavigate} className="flex h-12 shrink-0 items-center gap-2 px-3">
+        <Image src={logo} alt="" className="size-6 object-contain" />
+        <p className="text-[13px] font-semibold tracking-[-0.02em] text-ink">FarmIt</p>
+        <span className="rounded px-1.5 py-px text-[10px] font-medium text-muted-foreground">
+          Admin
+        </span>
+      </Link>
 
-      <nav className="flex min-h-0 flex-1 flex-col overflow-y-auto p-3">
-        <div className="flex flex-col gap-0.5">
+      <nav className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto px-2 pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex flex-col gap-px">
           {primaryNav.map((item) => (
             <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onNavigate} />
           ))}
         </div>
 
         {navGroups.map((group) => (
-          <div key={group.label} className="mt-5">
-            <p className="px-3 pb-1.5 text-xs font-medium text-muted-foreground">{group.label}</p>
-            <div className="flex flex-col gap-0.5">
-              {group.items.map((item) => (
-                <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onNavigate} />
-              ))}
-            </div>
-          </div>
+          <NavSection
+            key={group.label}
+            label={group.label}
+            items={group.items}
+            pathname={pathname}
+            onNavigate={onNavigate}
+          />
         ))}
 
         <div className="mt-auto border-t border-border pt-3">
-          <p className="px-3 pb-1.5 text-xs font-medium text-muted-foreground">Platform</p>
-          <div className="flex flex-col gap-0.5">
-            {utilityNav.map((item) => (
-              <NavLink key={item.href} item={item} pathname={pathname} onNavigate={onNavigate} />
-            ))}
-          </div>
+          <NavSection
+            label="Platform"
+            items={utilityNav}
+            pathname={pathname}
+            onNavigate={onNavigate}
+          />
         </div>
       </nav>
     </>

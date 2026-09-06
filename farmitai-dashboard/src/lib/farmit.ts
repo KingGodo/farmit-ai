@@ -41,7 +41,7 @@ async function readEnvelope<T>(response: Response): Promise<T> {
     throw new FarmitApiError(
       response.status,
       body?.error?.code ?? "INTERNAL_ERROR",
-      body?.error?.message ?? "FarmIT API request failed."
+      body?.error?.message ?? "FarmIt API request failed."
     );
   }
   return body.data;
@@ -119,7 +119,7 @@ export function jsonError(error: unknown) {
   }
   const message =
     error instanceof TypeError
-      ? "Could not reach FarmIT API. Is it running on port 8080?"
+      ? "Could not reach FarmIt API. Is it running on port 8080?"
       : "Something went wrong.";
   return NextResponse.json(
     { success: false, error: { code: "INTERNAL_ERROR", message } },

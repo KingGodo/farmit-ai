@@ -51,14 +51,17 @@ function HeaderSearchField() {
     <form onSubmit={search} className="hidden sm:block">
       <label className="relative block">
         <span className="sr-only">Search</span>
-        <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-faint" />
         <input
           ref={inputRef}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search"
-          className="h-9 w-64 rounded-md border border-input bg-background pr-3 pl-9 text-sm outline-none placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/20"
+          className="h-8 w-52 rounded-md border border-transparent bg-soft pr-8 pl-8 text-[12px] outline-none transition-[border-color,background-color,box-shadow] duration-150 ease-[var(--ease-craft)] placeholder:text-faint focus:border-border focus:bg-card focus:ring-2 focus:ring-ring/15"
         />
+        <kbd className="pointer-events-none absolute top-1/2 right-2 hidden h-5 min-w-5 -translate-y-1/2 items-center justify-center rounded border border-border bg-card px-1 font-sans text-[10px] font-medium text-faint sm:inline-flex">
+          /
+        </kbd>
       </label>
     </form>
   );
@@ -66,7 +69,7 @@ function HeaderSearchField() {
 
 export function HeaderSearch() {
   return (
-    <Suspense fallback={<div className="hidden h-9 w-64 sm:block" />}>
+    <Suspense fallback={<div className="hidden h-8 w-52 sm:block" />}>
       <HeaderSearchField />
     </Suspense>
   );

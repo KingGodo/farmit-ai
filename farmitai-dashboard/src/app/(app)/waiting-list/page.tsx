@@ -19,7 +19,7 @@ import {
 import { fetchWaitingList, reviewWaitingList } from "@/lib/client-api";
 import { formatDate, statusVariant } from "@/lib/format";
 import { queryKeys } from "@/lib/query-keys";
-import type { ApplicantType, WaitingListStatus } from "@/lib/types";
+import type { ApplicantType, WaitingListFilters, WaitingListStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const statuses: { id: "" | WaitingListStatus; label: string }[] = [
@@ -35,22 +35,29 @@ const types: { id: "" | ApplicantType; label: string }[] = [
   { id: "AGRONOMIST", label: "Agronomists" },
 ];
 
+function parseStatus(value: string | null): WaitingListStatus | "" {
+  return value === "PENDING" || value === "APPROVED" || value === "REJECTED" ? value : "";
+}
+
+function parseApplicantType(value: string | null): ApplicantType | "" {
+  return value === "FARMER" || value === "AGRONOMIST" ? value : "";
+}
+
 function WaitingListView() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
   const [draft, setDraft] = useState(searchParams.get("q") ?? "");
 
-  const filters = useMemo(
-    () => ({
-      status: (searchParams.get("status") as WaitingListStatus | null) ?? "",
-      applicantType: (searchParams.get("type") as ApplicantType | null) ?? "",
+  const filters = useMemo((): WaitingListFilters => {
+    return {
+      status: parseStatus(searchParams.get("status")),
+      applicantType: parseApplicantType(searchParams.get("type")),
       q: searchParams.get("q") ?? "",
       page: Number(searchParams.get("page") ?? "0"),
       size: 20,
-    }),
-    [searchParams]
-  );
+    };
+  }, [searchParams]);
 
   useEffect(() => {
     setDraft(searchParams.get("q") ?? "");
@@ -100,7 +107,7 @@ function WaitingListView() {
               className={cn(
                 "h-7 rounded-md px-2.5 text-[13px] transition-colors duration-150 ease-[var(--ease-craft)]",
                 filters.status === item.id
-                  ? "bg-muted font-medium text-foreground"
+                  ? "bg-lime font-semibold text-ink"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -116,7 +123,7 @@ function WaitingListView() {
               className={cn(
                 "h-7 rounded-md px-2.5 text-[13px] transition-colors duration-150 ease-[var(--ease-craft)]",
                 filters.applicantType === item.id
-                  ? "bg-muted font-medium text-foreground"
+                  ? "bg-lime font-semibold text-ink"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >

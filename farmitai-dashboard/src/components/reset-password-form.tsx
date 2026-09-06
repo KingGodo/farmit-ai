@@ -48,7 +48,7 @@ function ResetPasswordForm() {
       router.push("/login");
       router.refresh();
     } catch {
-      setError("Could not reach FarmIT. Is the API running?");
+      setError("Could not reach FarmIt. Is the API running?");
     } finally {
       setSubmitting(false);
     }
