@@ -1,0 +1,110 @@
+services:
+  postgres:
+    image: "postgres:16-alpine"
+    container_name: farmitai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: farmitai-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - farmitai_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d farmitai-db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - farmit_network
+
+  pgadmin:
+    image: "dpage/pgadmin4:9"
+    container_name: farmitai-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@farmit.co.zw
+      PGADMIN_DEFAULT_PASSWORD: changeme
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    volumes:
+      - farmitai_pgadmin:/var/lib/pgadmin
+    networks:
+      - farmit_network
+
+  backend:
+    build:
+      context: ./farmitai-backend
+      dockerfile: Dockerfile
+    container_name: farmitai-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: farmitai-db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      FARMIT_JWT_SECRET: SuperLongSecretKeyForJWT2026FarmIT
+      SPRING_PROFILES_ACTIVE: docker
+    restart: unless-stopped
+    networks:
+      - farmit_network
+
+  website:
+    build:
+      context: ./farmit_website
+      dockerfile: Dockerfile
+    container_name: farmitai-website
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      PORT: "3000"
+      NEXT_PUBLIC_API_URL: https://api.farmitai.co.zw
+    restart: unless-stopped
+    networks:
+      - farmit_network
+
+  dashboard:
+    build:
+      context: ./farmitai-dashboard
+      dockerfile: Dockerfile
+    container_name: farmitai-dashboard
+    environment:
+      NODE_ENV: production
+      HOSTNAME: "0.0.0.0"
+      PORT: "3000"
+      FARMIT_API_URL: https://api.farmitai.co.zw
+    restart: unless-stopped
+    networks:
+      - farmit_network
+
+  nginx:
+    image: "nginx:alpine"
+    container_name: farmitai-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - website
+      - dashboard
+      - backend
+    restart: unless-stopped
+    networks:
+      - farmit_network
+
+networks:
+  farmit_network:
+    driver: bridge
+
+volumes:
+  farmitai_pgdata:
+  farmitai_pgadmin:

@@ -85,6 +85,9 @@ public class SecurityConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.addAllowedOriginPattern("http://localhost:*");
+		configuration.addAllowedOrigin("https://farmitai.co.zw");
+		configuration.addAllowedOrigin("https://www.farmitai.co.zw");
+		configuration.addAllowedOrigin("https://admin.farmitai.co.zw");
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
 		configuration.setAllowCredentials(true);
