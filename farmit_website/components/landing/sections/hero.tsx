@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/farmit-hero-field.png";
 import { site } from "@/lib/site";
 
 export default function Hero() {
@@ -11,13 +10,13 @@ export default function Hero() {
     <section className="relative flex min-h-[88svh] flex-col overflow-hidden text-white lg:min-h-[100dvh]">
       <div className="absolute inset-0 bg-forest-deep">
         <Image
-          src={heroImage}
+          src="/images/farmit-hero-field.png"
           alt="Farmer working in a green field at golden hour"
           fill
           priority
+          unoptimized
           className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
           sizes="100vw"
-          quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />

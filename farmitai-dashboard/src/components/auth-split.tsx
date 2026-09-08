@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-import fieldImage from "@/assets/farmit-hero-field.png";
 import logo from "@/assets/farmit-logo.png";
 
 export function AuthSplit({
@@ -19,13 +18,13 @@ export function AuthSplit({
     <div className="grid min-h-dvh lg:grid-cols-2">
       <aside className="relative hidden overflow-hidden bg-forest-deep lg:flex lg:flex-col">
         <Image
-          src={fieldImage}
+          src="/images/farmit-hero-field.png"
           alt="Farmer working in a green field at golden hour"
           fill
           priority
+          unoptimized
           className="object-cover object-[58%_18%]"
           sizes="50vw"
-          quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/92 via-forest-deep/55 to-forest-deep/35" />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/70 via-forest-deep/25 to-transparent" />

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Navbar from "@/components/landing/sections/nav";
 import Footer from "@/components/landing/sections/footer";
 import WaitlistForm from "@/components/landing/WaitlistForm";
-import fieldImage from "@/assets/hero-farmer-whatsapp.png";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,13 +24,13 @@ export default function WaitlistPage() {
       <main className="lg:grid lg:grid-cols-2">
         <aside className="relative flex min-h-[18.5rem] flex-col justify-end overflow-hidden sm:min-h-[22rem] lg:sticky lg:top-0 lg:h-dvh lg:min-h-0">
           <Image
-            src={fieldImage}
+            src="/images/hero-farmer-whatsapp.png"
             alt="Farmer checking a phone in a maize field"
             fill
             priority
+            unoptimized
             className="object-cover object-[62%_center] lg:object-[68%_center]"
             sizes="(max-width: 1024px) 100vw, 50vw"
-            quality={90}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/45 to-forest-deep/30 lg:bg-gradient-to-r lg:from-forest-deep/90 lg:via-forest-deep/50 lg:to-forest-deep/20" />
 

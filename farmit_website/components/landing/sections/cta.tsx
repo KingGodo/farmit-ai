@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import ctaImage from "@/assets/hero-farmer-whatsapp.png";
 import { site } from "@/lib/site";
 
 export default function CTA() {
@@ -9,12 +8,12 @@ export default function CTA() {
     <section className="bg-background px-6 py-12 sm:px-8 sm:py-14 lg:px-10">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl">
         <Image
-          src={ctaImage}
+          src="/images/hero-farmer-whatsapp.png"
           alt="Farmer checking a phone in a maize field"
           fill
+          unoptimized
           className="object-cover object-[62%_center] sm:object-[70%_center]"
           sizes="(max-width: 1152px) 100vw, 1152px"
-          quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/92 via-forest-deep/58 to-forest-deep/25" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-transparent to-forest-deep/25" />

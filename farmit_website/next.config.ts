@@ -11,7 +11,12 @@ const nextConfig: NextConfig = {
     root: appDir,
   },
   images: {
+    unoptimized: true,
     qualities: [75, 90],
+    localPatterns: [
+      { pathname: "/images/**" },
+      { pathname: "/_next/static/media/**" },
+    ],
   },
 };
 
