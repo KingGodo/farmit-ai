@@ -2,7 +2,7 @@ export const ACCESS_COOKIE = "farmit_access";
 export const REFRESH_COOKIE = "farmit_refresh";
 
 export function getApiUrl() {
-  return process.env.FARMIT_API_URL ?? "http://localhost:8080";
+  return process.env["FARMIT_API_URL"] || "http://localhost:8080";
 }
 
 export type ApiErrorBody = {

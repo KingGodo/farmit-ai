@@ -60,12 +60,14 @@ services:
     build:
       context: ./farmit_website
       dockerfile: Dockerfile
+      args:
+        FARMIT_API_URL: http://backend:8080
     container_name: farmitai-website
     environment:
       NODE_ENV: production
       HOSTNAME: "0.0.0.0"
       PORT: "3000"
-      NEXT_PUBLIC_API_URL: https://api.farmitai.co.zw
+      FARMIT_API_URL: http://backend:8080
     restart: unless-stopped
     networks:
       - farmit_network
@@ -74,12 +76,14 @@ services:
     build:
       context: ./farmitai-dashboard
       dockerfile: Dockerfile
+      args:
+        FARMIT_API_URL: http://backend:8080
     container_name: farmitai-dashboard
     environment:
       NODE_ENV: production
       HOSTNAME: "0.0.0.0"
       PORT: "3000"
-      FARMIT_API_URL: https://api.farmitai.co.zw
+      FARMIT_API_URL: http://backend:8080
     restart: unless-stopped
     networks:
       - farmit_network

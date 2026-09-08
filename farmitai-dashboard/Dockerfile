@@ -6,6 +6,8 @@ RUN npm ci --legacy-peer-deps
 
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG FARMIT_API_URL=http://backend:8080
+ENV FARMIT_API_URL=$FARMIT_API_URL
 RUN npm run build
 
 FROM node:20-alpine AS runner
@@ -14,6 +16,7 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
+ENV FARMIT_API_URL=http://backend:8080
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules

@@ -16,7 +16,7 @@ export class FarmitApiError extends Error {
 }
 
 function getApiUrl() {
-  return process.env.FARMIT_API_URL ?? "http://localhost:8080";
+  return process.env["FARMIT_API_URL"] || "http://localhost:8080";
 }
 
 async function readEnvelope<T>(response: Response): Promise<T> {
