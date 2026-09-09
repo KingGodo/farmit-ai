@@ -16,7 +16,11 @@ export class FarmitApiError extends Error {
 }
 
 function getApiUrl() {
-  return process.env["FARMIT_API_URL"] || "http://localhost:8080";
+  const fromEnv = process.env["FARMIT_API_URL"]?.replace(/\/$/, "");
+  if (fromEnv) {
+    return fromEnv;
+  }
+  return process.env.NODE_ENV === "production" ? "http://backend:8080" : "http://localhost:8080";
 }
 
 async function readEnvelope<T>(response: Response): Promise<T> {
@@ -53,7 +57,7 @@ export function jsonError(error: unknown) {
   }
   const message =
     error instanceof TypeError
-      ? "Could not reach FarmIt. Is the API running on port 8080?"
+      ? "Could not reach the FarmIt API from the website."
       : "Something went wrong.";
   return Response.json(
     { success: false, error: { code: "INTERNAL_ERROR", message } },

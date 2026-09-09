@@ -123,7 +123,7 @@ export function jsonError(error: unknown) {
   }
   const message =
     error instanceof TypeError
-      ? "Could not reach FarmIt API. Is it running on port 8080?"
+      ? "Could not reach the FarmIt API from the dashboard."
       : "Something went wrong.";
   return NextResponse.json(
     { success: false, error: { code: "INTERNAL_ERROR", message } },
