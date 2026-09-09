@@ -112,7 +112,11 @@ public class AuthService {
 	public TokenResponse login(String email, String password) {
 		User user = userRepository.findByEmailIgnoreCase(email)
 				.orElseThrow(() -> new ApiException(ErrorCode.UNAUTHENTICATED));
-		if (user.getPasswordHash() == null || !passwordEncoder.matches(password, user.getPasswordHash())) {
+		try {
+			if (user.getPasswordHash() == null || !passwordEncoder.matches(password, user.getPasswordHash())) {
+				throw new ApiException(ErrorCode.UNAUTHENTICATED);
+			}
+		} catch (IllegalArgumentException ex) {
 			throw new ApiException(ErrorCode.UNAUTHENTICATED);
 		}
 		user.markLogin();

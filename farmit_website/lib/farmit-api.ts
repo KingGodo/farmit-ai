@@ -39,6 +39,7 @@ export async function farmitPost<T>(path: string, body: unknown, accessToken?: s
       ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
     },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(15000),
   });
   return readEnvelope<T>(response);
 }

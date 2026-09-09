@@ -52,6 +52,7 @@ export async function farmitLogin(email: string, password: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
+    signal: AbortSignal.timeout(15000),
   });
   return readEnvelope<TokenPayload>(response);
 }
@@ -61,6 +62,7 @@ export async function farmitPublic(path: string, body: unknown) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(15000),
   });
   return readEnvelope<unknown>(response);
 }
@@ -70,6 +72,7 @@ async function farmitRefresh(refreshToken: string) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refreshToken }),
+    signal: AbortSignal.timeout(15000),
   });
   return readEnvelope<TokenPayload>(response);
 }
@@ -89,6 +92,7 @@ export async function farmitAuthed<T>(
   const send = (token: string) =>
     fetch(`${getApiUrl()}${path}`, {
       ...init,
+      signal: init.signal ?? AbortSignal.timeout(15000),
       headers: {
         "Content-Type": "application/json",
         ...(init.headers ?? {}),
