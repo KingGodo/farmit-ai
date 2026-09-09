@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -10,11 +8,10 @@ export default function Hero() {
     <section className="relative flex min-h-[88svh] flex-col overflow-hidden text-white lg:min-h-[100dvh]">
       <div className="absolute inset-0 bg-forest-deep">
         <Image
-          src="/images/farmit-hero-field.png"
+          src="/images/farmit-hero-field.jpg"
           alt="Farmer working in a green field at golden hour"
           fill
           priority
-          unoptimized
           className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
           sizes="100vw"
         />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import farmerImg from "@/assets/farmit-bento-farmer.png";
-import cropImg from "@/assets/farmit-bento-crop.png";
+import farmerImg from "@/assets/farmit-bento-farmer.jpg";
+import cropImg from "@/assets/farmit-bento-crop.jpg";
 
 export default function Features() {
   return (

@@ -4,3 +4,8 @@ node_modules
 *.md
 .env*
 !/.env.example
+assets/farmit-hero-field.png
+assets/hero-farmer-whatsapp.png
+assets/farmit-bento-farmer.png
+assets/farmit-bento-crop.png
+assets/hero.png

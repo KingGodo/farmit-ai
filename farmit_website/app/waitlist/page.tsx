@@ -24,11 +24,10 @@ export default function WaitlistPage() {
       <main className="lg:grid lg:grid-cols-2">
         <aside className="relative flex min-h-[18.5rem] flex-col justify-end overflow-hidden sm:min-h-[22rem] lg:sticky lg:top-0 lg:h-dvh lg:min-h-0">
           <Image
-            src="/images/hero-farmer-whatsapp.png"
+            src="/images/hero-farmer-whatsapp.jpg"
             alt="Farmer checking a phone in a maize field"
             fill
             priority
-            unoptimized
             className="object-cover object-[62%_center] lg:object-[68%_center]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />

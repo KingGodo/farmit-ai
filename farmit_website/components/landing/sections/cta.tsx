@@ -8,10 +8,9 @@ export default function CTA() {
     <section className="bg-background px-6 py-12 sm:px-8 sm:py-14 lg:px-10">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl">
         <Image
-          src="/images/hero-farmer-whatsapp.png"
+          src="/images/hero-farmer-whatsapp.jpg"
           alt="Farmer checking a phone in a maize field"
           fill
-          unoptimized
           className="object-cover object-[62%_center] sm:object-[70%_center]"
           sizes="(max-width: 1152px) 100vw, 1152px"
         />

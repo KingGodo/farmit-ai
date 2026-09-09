@@ -18,11 +18,10 @@ export function AuthSplit({
     <div className="grid min-h-dvh lg:grid-cols-2">
       <aside className="relative hidden overflow-hidden bg-forest-deep lg:flex lg:flex-col">
         <Image
-          src="/images/farmit-hero-field.png"
+          src="/images/farmit-hero-field.jpg"
           alt="Farmer working in a green field at golden hour"
           fill
           priority
-          unoptimized
           className="object-cover object-[58%_18%]"
           sizes="50vw"
         />
