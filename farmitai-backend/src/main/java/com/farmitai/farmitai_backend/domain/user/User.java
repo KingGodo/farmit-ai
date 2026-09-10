@@ -117,6 +117,14 @@ public class User {
 		status = UserStatus.ACTIVE;
 	}
 
+	public void setEmail(String email) {
+		this.email = (email == null || email.isBlank()) ? null : email.trim();
+	}
+
+	public void setStatus(UserStatus status) {
+		this.status = status;
+	}
+
 	public UUID getId() {
 		return id;
 	}

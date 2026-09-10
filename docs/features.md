@@ -2,7 +2,7 @@
 title: FarmIT first ship vs later
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 updated_by: AI-assisted
 status: active
 ---
@@ -46,13 +46,21 @@ Contracts: [api-contract.md](./api-contract.md). Layout: [backend-file-structure
 
 Next.js admin dashboard as a client of Spring Boot. Admin login, waiting-list management, nothing talking to PostgreSQL directly.
 
+## Phase 3
+
+Farmers, agronomists, farms, fields, crops, and agro-business records. Admin dashboard directories consume these APIs. Approving a waitlist applicant creates the matching profile.
+
+## Phase 3 chatbot slice
+
+Conversations and messages. `POST /chatbot/messages` plus WhatsApp webhook persistence and a first-pass reply. Image diagnosis and Cloud API outbound send remain later.
+
 ---
 
 ## Later (do not pull into first ship)
 
 | Phase | Outcome |
 | :--- | :--- |
-| 3 | Farmers, farms, fields, crops; agro-business records |
+| 3 | Farmers, farms, fields, crops; agro-business records; chatbot threads |
 | 4 | Planting cycles, activities, health foundation |
 | 5 | FastAPI diagnosis, `diagnosis_catalog` + `diagnosis_products`, inventory, nearest supplier |
 | 6 | FarmIT Daily, weather, recommendations |

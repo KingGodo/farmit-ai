@@ -1,29 +1,24 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { SampleDirectory } from "@/components/sample-directory";
-import { dummyUsers, type DummyUser } from "@/lib/dummy";
+import { LiveDirectory } from "@/components/live-directory";
 import { formatDateTime, statusVariant } from "@/lib/format";
-
-const filters = [
-  { id: "all", label: "All", match: () => true },
-  { id: "ADMIN", label: "Admin", match: (row: DummyUser) => row.role === "ADMIN" },
-  { id: "FARMER", label: "Farmers", match: (row: DummyUser) => row.role === "FARMER" },
-  { id: "AGRONOMIST", label: "Agronomists", match: (row: DummyUser) => row.role === "AGRONOMIST" },
-  { id: "AGRO_BUSINESS", label: "Agro business", match: (row: DummyUser) => row.role === "AGRO_BUSINESS" },
-];
-
-function search(row: DummyUser) {
-  return [row.name, row.email, row.phone, row.role, row.status];
-}
+import type { AdminUser } from "@/lib/types";
 
 export default function UsersPage() {
   return (
-    <SampleDirectory
-      data={dummyUsers}
-      search={search}
-      filters={filters}
+    <LiveDirectory<AdminUser>
+      path="users"
       countNoun="users"
+      filterKey="role"
+      searchPlaceholder="Phone or email"
+      filters={[
+        { id: "", label: "All" },
+        { id: "ADMIN", label: "Admin" },
+        { id: "FARMER", label: "Farmers" },
+        { id: "AGRONOMIST", label: "Agronomists" },
+        { id: "AGRO_BUSINESS", label: "Agro business" },
+      ]}
       columns={[
         {
           header: "Name",
@@ -36,7 +31,12 @@ export default function UsersPage() {
             </>
           ),
         },
-        { header: "Role", cell: (row) => <span className="text-[13px]">{row.role.replaceAll("_", " ")}</span> },
+        {
+          header: "Role",
+          cell: (row) => (
+            <span className="text-[13px]">{row.roles.join(", ").replaceAll("_", " ") || "—"}</span>
+          ),
+        },
         {
           header: "Phone",
           cell: (row) => <span className="font-mono text-[12px] tabular-nums">{row.phone}</span>,

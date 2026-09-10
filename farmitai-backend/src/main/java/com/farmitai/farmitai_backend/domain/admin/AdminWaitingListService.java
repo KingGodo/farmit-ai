@@ -30,10 +30,15 @@ public class AdminWaitingListService {
 
 	private final WaitingListRepository waitingListRepository;
 	private final UserRepository userRepository;
+	private final ProfileProvisioner profileProvisioner;
 
-	public AdminWaitingListService(WaitingListRepository waitingListRepository, UserRepository userRepository) {
+	public AdminWaitingListService(
+			WaitingListRepository waitingListRepository,
+			UserRepository userRepository,
+			ProfileProvisioner profileProvisioner) {
 		this.waitingListRepository = waitingListRepository;
 		this.userRepository = userRepository;
+		this.profileProvisioner = profileProvisioner;
 	}
 
 	@Transactional(readOnly = true)
@@ -88,6 +93,7 @@ public class AdminWaitingListService {
 		entry.review(status, notes, reviewer);
 		if (status == WaitingListStatus.APPROVED) {
 			entry.getUser().activate();
+			profileProvisioner.provisionFromWaitlist(entry);
 		}
 	}
 

@@ -69,15 +69,16 @@ src/main/java/com/farmitai/farmitai_backend/
     │   ├── AdminWaitingListController.java
     │   └── AdminWaitingListService.java
     │
-    ├── whatsapp/        PHASE 1 STUB — Meta hub.verify only; no conversations
+    ├── whatsapp/        webhook verify + inbound persist
     │   └── WhatsAppWebhookController.java
     │
-    ├── farmer/          later
-    ├── crop/            later
+    ├── farmer/          PHASE 3 — FarmerProfile, Farm, FarmField
+    ├── agronomist/      PHASE 3 — AgronomistProfile
+    ├── crop/            PHASE 3 — Crop catalogue
+    ├── agrobusiness/    PHASE 3 — AgroBusiness, locations
+    ├── chat/            PHASE 3 — conversations, messages, chatbot
     ├── planting/        later
     ├── activity/        later
-    ├── diagnosis/       later
-    ├── agrobusiness/    later
     ├── input/           later — catalogue; diagnosis_products lives here or in diagnosis
     ├── match/           later — nearest supplier; Haversine in SQL first, PostGIS later
     ├── daily/           later — FarmIT Daily; recommendations fold in here until they earn a package

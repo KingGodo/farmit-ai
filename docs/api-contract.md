@@ -2,7 +2,7 @@
 title: FarmIT API contract (first ship)
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 updated_by: AI-assisted
 status: active
 ---
@@ -329,12 +329,60 @@ Mismatch → 403.
 
 ### POST `/whatsapp/webhook`
 
-Return `200` and `{ "success": true, "data": null }`. Do not parse, persist, or reply. Conversation depth is Phase 8.
-
 Verify Meta `X-Hub-Signature-256` when the app secret is configured; if configured and invalid, 403.
+
+Return `200` and `{ "success": true, "data": null }`. Persist inbound text (and a first-pass bot reply) on `conversations` / `messages`. Do not call WhatsApp Cloud API send yet.
+
+---
+
+## Admin directories (ADMIN + ACTIVE)
+
+Paginated list endpoints take `page`, `size` (max 100), and optional `q`. Status/role/channel filters are optional enums.
+
+| Method | Path | Notes |
+| :--- | :--- | :--- |
+| GET | `/admin/users` | Filter `status`, `role` |
+| PATCH | `/admin/users/{id}` | `{ "status": "ACTIVE" \| "SUSPENDED" \| "DELETED" }` |
+| GET, POST | `/admin/farmers` | Create: name, phone, optional email/district/province/farmingType/status |
+| GET, PATCH | `/admin/farmers/{id}` | Detail includes farms |
+| GET, POST | `/admin/agronomists` | Create: name, phone, optional email/district/specialty/status |
+| GET, PATCH | `/admin/agronomists/{id}` | |
+| GET, POST | `/admin/farms` | Create requires `farmerId` |
+| GET, PATCH | `/admin/farms/{id}` | Detail includes fields |
+| POST | `/admin/farms/{id}/fields` | |
+| GET, POST | `/admin/crops` | Catalogue |
+| GET, PATCH | `/admin/crops/{id}` | |
+| GET, POST | `/admin/agro-businesses` | |
+| GET, PATCH | `/admin/agro-businesses/{id}` | Detail includes locations |
+| POST | `/admin/agro-businesses/{id}/locations` | |
+| GET | `/admin/conversations` | Filter `channel` `WHATSAPP` \| `APP` |
+| GET | `/admin/conversations/{id}` | Includes messages |
+
+---
+
+## Farmer (role FARMER)
+
+| Method | Path |
+| :--- | :--- |
+| GET, PATCH | `/farmers/me` |
+| GET, POST | `/farms` |
+| GET, PATCH | `/farms/{id}` |
+| POST | `/farms/{id}/fields` |
+| GET | `/crops` |
+
+---
+
+## Chatbot (authenticated)
+
+| Method | Path | Body |
+| :--- | :--- | :--- |
+| POST | `/chatbot/messages` | `{ "content": "…", "channel": "APP" \| "WHATSAPP" }` |
+| GET | `/chatbot/conversations/me` | Query `channel` optional |
+
+`POST /chatbot/messages` stores the farmer message and a first-pass text reply (keyword rules until FastAPI diagnosis exists).
 
 ---
 
 ## Out of contract until later
 
-`/farmers`, `/farms`, `/diagnoses`, `/daily`, `/weather`, `/agro-businesses`, inbound WhatsApp flows, and dashboard pages that are not waiting-list admin. Phase 2 UI consumes only the admin routes above plus `/auth/login`.
+`/diagnoses`, `/daily`, `/weather`, inventory matching, gamification, learning, heat maps. Phase 5+ still owns those.

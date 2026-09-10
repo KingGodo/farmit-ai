@@ -1,5 +1,7 @@
 package com.farmitai.farmitai_backend.domain.waitinglist;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +14,6 @@ public interface WaitingListRepository extends JpaRepository<WaitingList, UUID>,
 	boolean existsByUserId(UUID userId);
 
 	long countByLocationIgnoreCase(String location);
+
+	List<WaitingList> findAllByUser_IdIn(Collection<UUID> userIds);
 }

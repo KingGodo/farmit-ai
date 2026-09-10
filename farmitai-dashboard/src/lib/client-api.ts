@@ -1,4 +1,12 @@
-import type { ApiEnvelope, AuthUser, PaginatedWaitingList, WaitingListFilters, WaitingListItem } from "@/lib/types";
+import type {
+  ApiEnvelope,
+  AuthUser,
+  DirectoryFilters,
+  Paginated,
+  PaginatedWaitingList,
+  WaitingListFilters,
+  WaitingListItem,
+} from "@/lib/types";
 
 async function read<T>(response: Response): Promise<T> {
   const body = (await response.json().catch(() => null)) as ApiEnvelope<T> | null;
@@ -30,4 +38,15 @@ export async function reviewWaitingList(id: string, status: "APPROVED" | "REJECT
       body: JSON.stringify({ status, notes }),
     })
   );
+}
+
+export async function fetchAdminPage<T>(path: string, filters: DirectoryFilters = {}) {
+  const params = new URLSearchParams();
+  if (filters.status) params.set("status", filters.status);
+  if (filters.role) params.set("role", filters.role);
+  if (filters.channel) params.set("channel", filters.channel);
+  if (filters.q) params.set("q", filters.q);
+  params.set("page", String(filters.page ?? 0));
+  params.set("size", String(filters.size ?? 20));
+  return read<Paginated<T>>(await fetch(`/api/admin/${path}?${params}`));
 }

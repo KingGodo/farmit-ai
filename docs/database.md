@@ -2,7 +2,7 @@
 title: FarmIT database schema (first ship)
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-09-04
+last_updated: 2026-09-09
 updated_by: AI-assisted
 status: active
 ---
@@ -165,8 +165,22 @@ Matching (later) is: diagnosis → `diagnosis_products` → locations that stock
 
 ---
 
+## V5 — people, land, agro businesses
+
+`src/main/resources/db/migration/V5__people_land_and_agro.sql`
+
+Creates `farmer_profiles`, `agronomist_profiles`, `farms`, `farm_fields`, `crops`, `crop_varieties`, `agro_businesses`, `agro_business_locations`. Seeds the crop catalogue (Maize, Groundnuts, Beans, Tomatoes, Tobacco, Vegetables).
+
+Approving a waiting-list row creates the matching farmer or agronomist profile from the applicant name and location.
+
+## V6 — WhatsApp conversations
+
+`src/main/resources/db/migration/V6__whatsapp_conversations.sql`
+
+Creates `whatsapp_accounts`, `conversations`, `messages`. Inbound webhook text is stored and a first-pass chatbot reply is saved on the same thread.
+
 ## Out of V1
 
-Farms, fields, crops, planting cycles, activities, diagnoses, images, agro businesses, inventory, matches, Daily, weather, notifications, gamification, learning, WhatsApp conversations, audit logs, system_config.
+Planting cycles, activities, diagnoses, images, inventory, matches, Daily, weather, notifications, gamification, learning, audit logs, system_config.
 
-They remain described at domain level in the [system specification](./FarmIT_1.0_System_Specification.md). They get Flyway files when those endpoints are being built.
+They remain described at domain level in the [system specification](./FarmIT_1.0_System_Specification.md).

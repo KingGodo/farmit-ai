@@ -11,6 +11,7 @@ public enum ErrorCode {
 	RESET_TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "That reset link has expired. Request a new one."),
 	FORBIDDEN(HttpStatus.FORBIDDEN, "You cannot perform this action."),
 	NOT_FOUND(HttpStatus.NOT_FOUND, "The requested resource was not found."),
+	CONFLICT(HttpStatus.CONFLICT, "That record already exists."),
 	WAITING_LIST_ALREADY_JOINED(HttpStatus.CONFLICT, "This account is already on the waiting list."),
 	RATE_LIMITED(HttpStatus.TOO_MANY_REQUESTS, "Too many requests. Try again shortly."),
 	INTERNAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Something went wrong.");

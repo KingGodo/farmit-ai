@@ -1,28 +1,22 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { SampleDirectory } from "@/components/sample-directory";
-import { dummyFarms, type DummyFarm } from "@/lib/dummy";
+import { LiveDirectory } from "@/components/live-directory";
 import { statusVariant } from "@/lib/format";
-
-const filters = [
-  { id: "all", label: "All", match: () => true },
-  { id: "ACTIVE", label: "Active", match: (row: DummyFarm) => row.status === "ACTIVE" },
-  { id: "PENDING", label: "Pending", match: (row: DummyFarm) => row.status === "PENDING" },
-];
-
-function search(row: DummyFarm) {
-  return [row.name, row.farmerName, row.district, row.crop];
-}
+import type { AdminFarmSummary } from "@/lib/types";
 
 export default function FarmsPage() {
   return (
-    <SampleDirectory
-      data={dummyFarms}
-      search={search}
-      filters={filters}
-      href={(row) => `/farms/${row.id}`}
+    <LiveDirectory<AdminFarmSummary>
+      path="farms"
       countNoun="farms"
+      href={(row) => `/farms/${row.id}`}
+      searchPlaceholder="Farm or farmer"
+      filters={[
+        { id: "", label: "All" },
+        { id: "ACTIVE", label: "Active" },
+        { id: "INACTIVE", label: "Inactive" },
+      ]}
       columns={[
         {
           header: "Farm",
@@ -33,15 +27,14 @@ export default function FarmsPage() {
             </>
           ),
         },
-        { header: "District", cell: (row) => <span className="text-[13px]">{row.district}</span> },
-        { header: "Crop", cell: (row) => <span className="text-[13px]">{row.crop}</span> },
+        { header: "District", cell: (row) => <span className="text-[13px]">{row.district ?? "—"}</span> },
         {
           header: "Hectares",
-          cell: (row) => <span className="font-mono text-[13px] tabular-nums">{row.hectares.toFixed(1)}</span>,
-        },
-        {
-          header: "Health",
-          cell: (row) => <span className="font-mono text-[13px] tabular-nums">{row.health}</span>,
+          cell: (row) => (
+            <span className="font-mono text-[13px] tabular-nums">
+              {row.hectares == null ? "—" : Number(row.hectares).toFixed(1)}
+            </span>
+          ),
         },
         {
           header: "Status",
