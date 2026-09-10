@@ -4,9 +4,11 @@ import com.farmitai.farmitai_backend.common.config.FarmitProperties;
 import com.farmitai.farmitai_backend.common.exception.ApiException;
 import com.farmitai.farmitai_backend.common.exception.ErrorCode;
 import com.farmitai.farmitai_backend.common.util.Hashes;
+import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.MeResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequestResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.TokenResponse;
+import com.farmitai.farmitai_backend.domain.user.AccountFactory;
 import com.farmitai.farmitai_backend.domain.user.Role;
 import com.farmitai.farmitai_backend.domain.user.RoleName;
 import com.farmitai.farmitai_backend.domain.user.RoleRepository;
@@ -37,6 +39,7 @@ public class AuthService {
 	private final TokenRefreshService tokenRefreshService;
 	private final PasswordEncoder passwordEncoder;
 	private final PasswordResetTokenRepository passwordResetTokenRepository;
+	private final AccountFactory accountFactory;
 
 	public AuthService(
 			FarmitProperties properties,
@@ -47,7 +50,8 @@ public class AuthService {
 			WaitingListRepository waitingListRepository,
 			TokenRefreshService tokenRefreshService,
 			PasswordEncoder passwordEncoder,
-			PasswordResetTokenRepository passwordResetTokenRepository) {
+			PasswordResetTokenRepository passwordResetTokenRepository,
+			AccountFactory accountFactory) {
 		this.properties = properties;
 		this.otpChallengeRepository = otpChallengeRepository;
 		this.otpRateLimiter = otpRateLimiter;
@@ -57,6 +61,7 @@ public class AuthService {
 		this.tokenRefreshService = tokenRefreshService;
 		this.passwordEncoder = passwordEncoder;
 		this.passwordResetTokenRepository = passwordResetTokenRepository;
+		this.accountFactory = accountFactory;
 	}
 
 	@Transactional
@@ -124,20 +129,30 @@ public class AuthService {
 	}
 
 	@Transactional
-	public void forgotPassword(String email) {
-		userRepository.findByEmailIgnoreCase(email).ifPresent(user -> {
-			if (user.getPasswordHash() == null) {
-				return;
-			}
-			passwordResetTokenRepository.findAllByUserIdAndConsumedAtIsNull(user.getId())
-					.forEach(PasswordResetToken::consume);
-			String token = Hashes.randomToken();
-			Instant expiresAt = Instant.now().plus(java.time.Duration.ofMinutes(30));
-			passwordResetTokenRepository.save(PasswordResetToken.open(user, hashResetToken(token), expiresAt));
-			if (properties.otp().logCode()) {
-				log.info("Password reset for {} is http://localhost:3000/reset-password?token={}", email, token);
-			}
-		});
+	public TokenResponse registerAdmin(String email, String password, String phone) {
+		User user = accountFactory.createAdmin(phone, email, passwordEncoder.encode(password));
+		user.markLogin();
+		return tokenRefreshService.issue(user);
+	}
+
+	@Transactional
+	public ForgotPasswordResponse forgotPassword(String email) {
+		return userRepository.findByEmailIgnoreCase(email)
+				.filter(user -> user.getPasswordHash() != null)
+				.map(user -> {
+					passwordResetTokenRepository.findAllByUserIdAndConsumedAtIsNull(user.getId())
+							.forEach(PasswordResetToken::consume);
+					String token = Hashes.randomToken();
+					Instant expiresAt = Instant.now().plus(java.time.Duration.ofMinutes(30));
+					passwordResetTokenRepository.save(PasswordResetToken.open(user, hashResetToken(token), expiresAt));
+					String resetUrl = properties.dashboard().publicUrl() + "/reset-password?token=" + token;
+					if (properties.otp().logCode()) {
+						log.info("Password reset for {} is {}", email, resetUrl);
+						return new ForgotPasswordResponse(resetUrl);
+					}
+					return new ForgotPasswordResponse(null);
+				})
+				.orElseGet(() -> new ForgotPasswordResponse(null));
 	}
 
 	@Transactional

@@ -2,7 +2,7 @@
 title: FarmIT API contract (first ship)
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-09-09
+last_updated: 2026-09-10
 updated_by: AI-assisted
 status: active
 ---
@@ -82,6 +82,7 @@ Pages are zero-based.
 | OTP_EXPIRED | 401 | Challenge past `expires_at` |
 | FORBIDDEN | 403 | Wrong role, or `PENDING` user hitting a later-phase route |
 | NOT_FOUND | 404 | Unknown waiting-list id |
+| CONFLICT | 409 | Email or phone already used |
 | WAITING_LIST_ALREADY_JOINED | 409 | This user already has a row |
 | RATE_LIMITED | 429 | OTP throttle |
 | INTERNAL_ERROR | 500 | Unhandled |
@@ -161,6 +162,26 @@ Admin (and later agro) email/password. Farmers should not need this.
 ```
 
 Same token payload as OTP verify. 401 `UNAUTHENTICATED` on bad credentials (do not say which field).
+
+### POST `/auth/register`
+
+Public. Creates an `ADMIN` user (`ACTIVE`, email + password) and returns the same token payload as login. Phone must be E.164. Password min 8 characters. 409 `CONFLICT` if the email or phone is already taken.
+
+```json
+{ "email": "ops@farmit.co.zw", "phone": "+263771234567", "password": "…" }
+```
+
+### POST `/auth/forgot-password`
+
+Public. Always `200`. If that email has a password, a 30-minute reset token is stored hashed. `data.resetUrl` is present only when `farmit.otp.log-code` is true (until outbound email exists). Reset links use `farmit.dashboard.public-url`.
+
+```json
+{ "email": "admin@farmit.co.zw" }
+```
+
+### POST `/auth/reset-password`
+
+Public. `{ "token": "…", "password": "…" }`. Invalid token → 401 `INVALID_RESET_TOKEN`. Expired → 401 `RESET_TOKEN_EXPIRED`.
 
 ### POST `/auth/refresh`
 
@@ -342,6 +363,7 @@ Paginated list endpoints take `page`, `size` (max 100), and optional `q`. Status
 | Method | Path | Notes |
 | :--- | :--- | :--- |
 | GET | `/admin/users` | Filter `status`, `role` |
+| POST | `/admin/users` | Create admin: email, phone, password |
 | PATCH | `/admin/users/{id}` | `{ "status": "ACTIVE" \| "SUSPENDED" \| "DELETED" }` |
 | GET, POST | `/admin/farmers` | Create: name, phone, optional email/district/province/farmingType/status |
 | GET, PATCH | `/admin/farmers/{id}` | Detail includes farms |

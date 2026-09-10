@@ -57,14 +57,24 @@ export async function farmitLogin(email: string, password: string) {
   return readEnvelope<TokenPayload>(response);
 }
 
-export async function farmitPublic(path: string, body: unknown) {
+export async function farmitRegister(email: string, phone: string, password: string) {
+  const response = await fetch(`${getApiUrl()}/api/v1/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, phone, password }),
+    signal: AbortSignal.timeout(15000),
+  });
+  return readEnvelope<TokenPayload>(response);
+}
+
+export async function farmitPublic<T = unknown>(path: string, body: unknown) {
   const response = await fetch(`${getApiUrl()}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(15000),
   });
-  return readEnvelope<unknown>(response);
+  return readEnvelope<T>(response);
 }
 
 async function farmitRefresh(refreshToken: string) {
@@ -82,7 +92,7 @@ export async function farmitAuthed<T>(
   init: RequestInit = {}
 ): Promise<{ data: T; tokens?: TokenPayload }> {
   const jar = await cookies();
-  let access = jar.get(ACCESS_COOKIE)?.value;
+  const access = jar.get(ACCESS_COOKIE)?.value;
   const refresh = jar.get(REFRESH_COOKIE)?.value;
 
   if (!access && !refresh) {

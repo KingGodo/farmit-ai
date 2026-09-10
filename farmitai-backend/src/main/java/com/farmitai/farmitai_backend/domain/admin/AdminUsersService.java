@@ -10,6 +10,7 @@ import com.farmitai.farmitai_backend.domain.agronomist.AgronomistProfile;
 import com.farmitai.farmitai_backend.domain.agronomist.AgronomistProfileRepository;
 import com.farmitai.farmitai_backend.domain.farmer.FarmerProfile;
 import com.farmitai.farmitai_backend.domain.farmer.FarmerProfileRepository;
+import com.farmitai.farmitai_backend.domain.user.AccountFactory;
 import com.farmitai.farmitai_backend.domain.user.Role;
 import com.farmitai.farmitai_backend.domain.user.RoleName;
 import com.farmitai.farmitai_backend.domain.user.User;
@@ -27,6 +28,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,16 +39,22 @@ public class AdminUsersService {
 	private final WaitingListRepository waitingListRepository;
 	private final FarmerProfileRepository farmerProfileRepository;
 	private final AgronomistProfileRepository agronomistProfileRepository;
+	private final AccountFactory accountFactory;
+	private final PasswordEncoder passwordEncoder;
 
 	public AdminUsersService(
 			UserRepository userRepository,
 			WaitingListRepository waitingListRepository,
 			FarmerProfileRepository farmerProfileRepository,
-			AgronomistProfileRepository agronomistProfileRepository) {
+			AgronomistProfileRepository agronomistProfileRepository,
+			AccountFactory accountFactory,
+			PasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
 		this.waitingListRepository = waitingListRepository;
 		this.farmerProfileRepository = farmerProfileRepository;
 		this.agronomistProfileRepository = agronomistProfileRepository;
+		this.accountFactory = accountFactory;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Transactional(readOnly = true)
@@ -60,6 +68,15 @@ public class AdminUsersService {
 		Map<UUID, AgronomistProfile> agronomists = agronomistProfileRepository.findAllByUser_IdIn(ids).stream()
 				.collect(Collectors.toMap(profile -> profile.getUser().getId(), Function.identity()));
 		return PaginatedData.from(result.map(user -> toItem(user, waitByUser, farmers, agronomists)));
+	}
+
+	@Transactional
+	public AdminDtos.UserItem create(AdminDtos.CreateUserRequest request) {
+		User user = accountFactory.createAdmin(
+				request.phone(),
+				request.email(),
+				passwordEncoder.encode(request.password()));
+		return toItem(user, Map.of(), Map.of(), Map.of());
 	}
 
 	@Transactional

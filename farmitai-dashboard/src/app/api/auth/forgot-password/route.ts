@@ -14,8 +14,11 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    await farmitPublic("/api/v1/auth/forgot-password", { email });
-    return NextResponse.json({ success: true, data: null });
+    const data = await farmitPublic<{ resetUrl?: string | null }>(
+      "/api/v1/auth/forgot-password",
+      { email }
+    );
+    return NextResponse.json({ success: true, data });
   } catch (error) {
     return jsonError(error);
   }

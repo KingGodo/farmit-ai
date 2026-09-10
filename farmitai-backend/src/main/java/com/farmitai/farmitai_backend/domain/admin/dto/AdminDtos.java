@@ -3,8 +3,10 @@ package com.farmitai.farmitai_backend.domain.admin.dto;
 import com.farmitai.farmitai_backend.domain.agrobusiness.AgroBusinessStatus;
 import com.farmitai.farmitai_backend.domain.farmer.FarmStatus;
 import com.farmitai.farmitai_backend.domain.user.UserStatus;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -27,6 +29,12 @@ public final class AdminDtos {
 	}
 
 	public record PatchUserRequest(@NotNull UserStatus status) {
+	}
+
+	public record CreateUserRequest(
+			@NotBlank @Email String email,
+			@NotBlank String phone,
+			@NotBlank @Size(min = 8, max = 72) String password) {
 	}
 
 	public record FarmerItem(

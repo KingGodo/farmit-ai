@@ -9,6 +9,7 @@ export async function proxy(request: NextRequest) {
     Boolean(request.cookies.get(REFRESH_COOKIE)?.value);
   const isPublic =
     pathname === "/login" ||
+    pathname === "/create-account" ||
     pathname === "/forgot-password" ||
     pathname === "/reset-password";
 

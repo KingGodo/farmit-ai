@@ -51,6 +51,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       FARMIT_JWT_SECRET: SuperLongSecretKeyForJWT2026FarmIT
+      FARMIT_DASHBOARD_PUBLIC_URL: https://admin.farmitai.co.zw
       SPRING_PROFILES_ACTIVE: docker
     restart: unless-stopped
     networks:

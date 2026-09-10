@@ -60,6 +60,14 @@ public class AdminDirectoryController {
 		return ApiResponse.ok(adminUsersService.list(status, role, q, page, size));
 	}
 
+	@PostMapping("/users")
+	public ApiResponse<AdminDtos.UserItem> createUser(
+			@Valid @RequestBody AdminDtos.CreateUserRequest request,
+			@AuthenticationPrincipal UserPrincipal principal) {
+		AdminAccess.requireActive(principal);
+		return ApiResponse.ok(adminUsersService.create(request));
+	}
+
 	@PatchMapping("/users/{id}")
 	public ApiResponse<AdminDtos.UserItem> patchUser(
 			@PathVariable UUID id,

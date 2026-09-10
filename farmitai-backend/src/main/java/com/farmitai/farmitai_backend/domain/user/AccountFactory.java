@@ -39,4 +39,29 @@ public class AccountFactory {
 		user.addRole(role);
 		return userRepository.save(user);
 	}
+
+	@Transactional
+	public User createAdmin(String phone, String email, String passwordHash) {
+		String e164;
+		try {
+			e164 = PhoneNumbers.requireE164(phone);
+		} catch (IllegalArgumentException ex) {
+			throw new ApiException(ErrorCode.VALIDATION_ERROR, "phone must be E.164");
+		}
+		String normalizedEmail = email == null ? "" : email.trim();
+		if (normalizedEmail.isBlank()) {
+			throw new ApiException(ErrorCode.VALIDATION_ERROR, "email is required");
+		}
+		if (userRepository.findByPhone(e164).isPresent()) {
+			throw new ApiException(ErrorCode.CONFLICT, "A user with that phone already exists.");
+		}
+		if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
+			throw new ApiException(ErrorCode.CONFLICT, "A user with that email already exists.");
+		}
+		Role role = roleRepository.findByName(RoleName.ADMIN)
+				.orElseThrow(() -> new ApiException(ErrorCode.INTERNAL_ERROR, "Role is not seeded."));
+		User user = User.admin(e164, normalizedEmail, passwordHash);
+		user.addRole(role);
+		return userRepository.save(user);
+	}
 }

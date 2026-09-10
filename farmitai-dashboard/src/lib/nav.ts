@@ -70,6 +70,7 @@ export const utilityNav: NavItem[] = [
 export const pageMeta: { prefix: string; title: string; kicker: string }[] = [
   { prefix: "/", title: "Overview", kicker: "Operations" },
   { prefix: "/waiting-list", title: "Waiting list", kicker: "Operations" },
+  { prefix: "/users/new", title: "Create account", kicker: "People" },
   { prefix: "/users", title: "Users", kicker: "People" },
   { prefix: "/farmers", title: "Farmers", kicker: "People" },
   { prefix: "/agronomists", title: "Agronomists", kicker: "People" },

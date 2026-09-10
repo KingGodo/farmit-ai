@@ -2,8 +2,10 @@ package com.farmitai.farmitai_backend.domain.auth;
 
 import com.farmitai.farmitai_backend.common.dto.ApiResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordRequest;
+import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.LoginRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.MeResponse;
+import com.farmitai.farmitai_backend.domain.auth.dto.RegisterRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequestResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpVerifyRequest;
@@ -47,10 +49,14 @@ public class AuthController {
 		return ApiResponse.ok(authService.login(request.email(), request.password()));
 	}
 
+	@PostMapping("/register")
+	public ApiResponse<TokenResponse> register(@Valid @RequestBody RegisterRequest request) {
+		return ApiResponse.ok(authService.registerAdmin(request.email(), request.password(), request.phone()));
+	}
+
 	@PostMapping("/forgot-password")
-	public ApiResponse<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
-		authService.forgotPassword(request.email());
-		return ApiResponse.empty();
+	public ApiResponse<ForgotPasswordResponse> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+		return ApiResponse.ok(authService.forgotPassword(request.email()));
 	}
 
 	@PostMapping("/reset-password")

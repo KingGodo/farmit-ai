@@ -40,6 +40,8 @@ farmit:
     email: ${FARMIT_ADMIN_EMAIL:admin@farmit.co.zw}
     password: ${FARMIT_ADMIN_PASSWORD:changeme}
     phone: ${FARMIT_ADMIN_PHONE:+263700000000}
+  dashboard:
+    public-url: ${FARMIT_DASHBOARD_PUBLIC_URL:http://localhost:3000}
   whatsapp:
     verify-token: ${WHATSAPP_VERIFY_TOKEN:farmit-dev-verify}
     app-secret: ${WHATSAPP_APP_SECRET:}

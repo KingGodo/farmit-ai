@@ -8,8 +8,18 @@ public record FarmitProperties(
 		Jwt jwt,
 		Otp otp,
 		Admin admin,
-		Whatsapp whatsapp
+		Whatsapp whatsapp,
+		Dashboard dashboard
 ) {
+	public FarmitProperties {
+		if (whatsapp == null) {
+			whatsapp = new Whatsapp("farmit-dev-verify", "");
+		}
+		if (dashboard == null) {
+			dashboard = new Dashboard("http://localhost:3000");
+		}
+	}
+
 	public record Jwt(String secret, Duration accessTtl, Duration refreshTtl) {
 	}
 
@@ -20,5 +30,15 @@ public record FarmitProperties(
 	}
 
 	public record Whatsapp(String verifyToken, String appSecret) {
+	}
+
+	public record Dashboard(String publicUrl) {
+		public Dashboard {
+			if (publicUrl == null || publicUrl.isBlank()) {
+				publicUrl = "http://localhost:3000";
+			} else {
+				publicUrl = publicUrl.replaceAll("/+$", "");
+			}
+		}
 	}
 }

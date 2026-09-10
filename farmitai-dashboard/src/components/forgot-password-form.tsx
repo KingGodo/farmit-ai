@@ -9,26 +9,34 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function ForgotPasswordForm() {
-  const [email, setEmail] = useState("admin@farmit.co.zw");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [resetUrl, setResetUrl] = useState<string | null>(null);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    if (!email.trim()) {
+      setError("Enter your email address.");
+      return;
+    }
     setSubmitting(true);
     try {
       const response = await fetch("/api/auth/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       const body = await response.json().catch(() => null);
       if (!response.ok) {
         setError(body?.error?.message ?? "Could not send reset instructions.");
         return;
       }
+      const nextUrl =
+        typeof body?.data?.resetUrl === "string" && body.data.resetUrl ? body.data.resetUrl : null;
+      setResetUrl(nextUrl);
       setSent(true);
     } catch {
       setError("Could not reach FarmIt. Is the API running?");
@@ -46,11 +54,21 @@ export function ForgotPasswordForm() {
         <h3 className="mt-5 text-base font-semibold tracking-[-0.02em]">Check your email</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           If <span className="font-medium text-foreground">{email}</span> has an admin
-          account, we sent a reset link. It expires in 30 minutes.
+          account, we prepared a reset link. It expires in 30 minutes.
         </p>
-        <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
-          Locally, the link is printed in the FarmIt API terminal.
-        </p>
+        {resetUrl ? (
+          <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
+            Email is not wired yet.{" "}
+            <Link href={resetUrl} className="font-medium text-forest hover:text-forest-deep">
+              Continue with this reset link
+            </Link>
+            .
+          </p>
+        ) : (
+          <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+            If you do not receive a link, ask another admin to send a new one.
+          </p>
+        )}
         <Link
           href="/login"
           className="mt-6 inline-flex h-11 items-center gap-2 text-[13px] font-medium text-forest"

@@ -2,7 +2,7 @@
 title: FarmIT backend file structure
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-08-25
+last_updated: 2026-09-10
 updated_by: AI-assisted
 status: active
 ---
@@ -44,7 +44,7 @@ src/main/java/com/farmitai/farmitai_backend/
 
 └── domain/
 
-    ├── auth/            PHASE 1 — OTP request/verify, refresh, logout
+    ├── auth/            PHASE 1 — OTP, login, register, forgot/reset, refresh, logout
     │   ├── AuthController.java
     │   ├── AuthService.java
     │   ├── TokenRefreshService.java

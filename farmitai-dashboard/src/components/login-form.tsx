@@ -77,6 +77,12 @@ export function LoginForm() {
       <Button type="submit" className="h-11 w-full text-sm" disabled={submitting}>
         {submitting ? "Signing in…" : "Sign in"}
       </Button>
+      <p className="text-center text-[13px] text-muted-foreground">
+        Need an admin login?{" "}
+        <Link href="/create-account" className="font-medium text-forest hover:text-forest-deep">
+          Create account
+        </Link>
+      </p>
     </form>
   );
 }

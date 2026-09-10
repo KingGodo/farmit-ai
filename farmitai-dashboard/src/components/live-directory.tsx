@@ -32,7 +32,7 @@ export type LiveFilter = {
   param?: "status" | "role" | "channel";
 };
 
-function LiveDirectoryView<T extends { id: string }>({
+export function LiveDirectoryView<T extends { id: string }>({
   path,
   countNoun,
   columns,
@@ -40,6 +40,7 @@ function LiveDirectoryView<T extends { id: string }>({
   href,
   searchPlaceholder = "Search",
   filterKey = "status",
+  action,
 }: {
   path: string;
   countNoun: string;
@@ -48,6 +49,7 @@ function LiveDirectoryView<T extends { id: string }>({
   href?: (row: T) => string;
   searchPlaceholder?: string;
   filterKey?: "status" | "role" | "channel";
+  action?: ReactNode;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -113,6 +115,7 @@ function LiveDirectoryView<T extends { id: string }>({
         ) : (
           <div />
         )}
+        <div className="flex flex-wrap items-center justify-end gap-2">
         <form
           className="sm:w-56"
           onSubmit={(event) => {
@@ -131,6 +134,8 @@ function LiveDirectoryView<T extends { id: string }>({
             />
           </label>
         </form>
+        {action}
+        </div>
       </div>
 
       <div className="overflow-hidden rounded-lg border border-border bg-card">
@@ -226,6 +231,7 @@ export function LiveDirectory<T extends { id: string }>(props: {
   href?: (row: T) => string;
   searchPlaceholder?: string;
   filterKey?: "status" | "role" | "channel";
+  action?: ReactNode;
 }) {
   return (
     <Suspense fallback={<Skeleton className="h-64 w-full" />}>

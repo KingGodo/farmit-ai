@@ -1,9 +1,13 @@
 "use client";
 
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
 import { LiveDirectory } from "@/components/live-directory";
 import { formatDateTime, statusVariant } from "@/lib/format";
 import type { AdminUser } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 export default function UsersPage() {
   return (
@@ -12,6 +16,11 @@ export default function UsersPage() {
       countNoun="users"
       filterKey="role"
       searchPlaceholder="Phone or email"
+      action={
+        <Link href="/users/new" className={cn(buttonVariants(), "h-8 px-3 text-[13px]")}>
+          Create account
+        </Link>
+      }
       filters={[
         { id: "", label: "All" },
         { id: "ADMIN", label: "Admin" },

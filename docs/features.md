@@ -2,7 +2,7 @@
 title: FarmIT first ship vs later
 created: 2026-08-25
 author: AI-assisted
-last_updated: 2026-09-09
+last_updated: 2026-09-10
 updated_by: AI-assisted
 status: active
 ---
@@ -44,7 +44,7 @@ Contracts: [api-contract.md](./api-contract.md). Layout: [backend-file-structure
 
 ## Phase 2
 
-Next.js admin dashboard as a client of Spring Boot. Admin login, waiting-list management, nothing talking to PostgreSQL directly.
+Next.js admin dashboard as a client of Spring Boot. Admin login, create-account, forgot/reset password, waiting-list management, nothing talking to PostgreSQL directly.
 
 ## Phase 3
 
