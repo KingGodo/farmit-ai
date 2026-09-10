@@ -121,6 +121,10 @@ public class User {
 		this.email = (email == null || email.isBlank()) ? null : email.trim();
 	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public void setStatus(UserStatus status) {
 		this.status = status;
 	}

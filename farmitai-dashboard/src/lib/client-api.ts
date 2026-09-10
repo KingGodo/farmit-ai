@@ -20,6 +20,26 @@ export async function fetchMe() {
   return read<AuthUser>(await fetch("/api/auth/me"));
 }
 
+export async function patchMe(input: { email: string; phone: string }) {
+  return read<AuthUser>(
+    await fetch("/api/auth/me", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    })
+  );
+}
+
+export async function changePassword(input: { currentPassword: string; newPassword: string }) {
+  return read<null>(
+    await fetch("/api/auth/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    })
+  );
+}
+
 export async function fetchWaitingList(filters: WaitingListFilters) {
   const params = new URLSearchParams();
   if (filters.status) params.set("status", filters.status);

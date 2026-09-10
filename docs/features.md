@@ -44,7 +44,7 @@ Contracts: [api-contract.md](./api-contract.md). Layout: [backend-file-structure
 
 ## Phase 2
 
-Next.js admin dashboard as a client of Spring Boot. Admin login, create-account, forgot/reset password, waiting-list management, nothing talking to PostgreSQL directly.
+Next.js admin dashboard as a client of Spring Boot. Admin login, create-account, profile and password change, forgot/reset password, waiting-list management, nothing talking to PostgreSQL directly.
 
 ## Phase 3
 

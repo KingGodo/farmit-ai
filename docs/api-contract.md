@@ -228,6 +228,18 @@ Authenticated.
 
 `waitingList` is `null` if the farmer has not joined yet.
 
+### PATCH `/auth/me`
+
+Authenticated. Updates the signed-in user's email and/or phone. Phone must be E.164. 409 `CONFLICT` if another user already has that email or phone. Returns the same `data` shape as GET `/auth/me`.
+
+```json
+{ "email": "ops@farmit.co.zw", "phone": "+263771234567" }
+```
+
+### POST `/auth/change-password`
+
+Authenticated. `{ "currentPassword": "…", "newPassword": "…" }`. New password min 8 characters. Wrong current password → 400 `VALIDATION_ERROR`. Does not revoke the current session.
+
 ---
 
 ## Waiting list (farmer / agronomist)

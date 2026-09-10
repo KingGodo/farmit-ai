@@ -1,9 +1,11 @@
 "use client";
 
-import { LogOut } from "lucide-react";
+import Link from "next/link";
+import { CircleUser, LogOut, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { displayNameFromEmail, initialsFromEmail } from "@/lib/user";
+import { displayNameFromEmail } from "@/lib/user";
+import { cn } from "@/lib/utils";
 
 export function UserMenu({
   email,
@@ -14,7 +16,6 @@ export function UserMenu({
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
-  const initials = initialsFromEmail(email);
   const name = displayNameFromEmail(email);
 
   useEffect(() => {
@@ -39,12 +40,13 @@ export function UserMenu({
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="flex h-8 items-center gap-2 rounded-md border border-border bg-card pr-2.5 pl-1 transition-colors duration-150 ease-[var(--ease-craft)] hover:bg-soft"
+        aria-label="Open profile menu"
+        className={cn(
+          "flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-150 ease-[var(--ease-craft)] hover:bg-muted hover:text-foreground",
+          open && "bg-muted text-foreground"
+        )}
       >
-        <span className="flex size-6 items-center justify-center rounded-[5px] bg-forest text-[10px] font-semibold tracking-[0.02em] text-white">
-          {initials}
-        </span>
-        <span className="hidden max-w-[120px] truncate text-[12px] font-medium sm:block">{name}</span>
+        <CircleUser className="size-5" strokeWidth={1.75} />
       </button>
       {open && (
         <div
@@ -55,6 +57,15 @@ export function UserMenu({
             <p className="truncate text-[13px] font-medium">{name}</p>
             <p className="mt-0.5 truncate text-[12px] text-muted-foreground">{email}</p>
           </div>
+          <Link
+            href="/profile"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex h-9 w-full items-center gap-2 px-3 text-[13px] transition-colors duration-150 ease-[var(--ease-craft)] hover:bg-soft"
+          >
+            <User className="size-3.5 text-faint" />
+            Profile
+          </Link>
           <button
             type="button"
             role="menuitem"

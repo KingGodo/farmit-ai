@@ -4,8 +4,10 @@ import com.farmitai.farmitai_backend.common.config.FarmitProperties;
 import com.farmitai.farmitai_backend.common.exception.ApiException;
 import com.farmitai.farmitai_backend.common.exception.ErrorCode;
 import com.farmitai.farmitai_backend.common.util.Hashes;
+import com.farmitai.farmitai_backend.common.util.PhoneNumbers;
 import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.MeResponse;
+import com.farmitai.farmitai_backend.domain.auth.dto.PatchMeRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequestResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.TokenResponse;
 import com.farmitai.farmitai_backend.domain.user.AccountFactory;
@@ -170,8 +172,60 @@ public class AuthService {
 
 	@Transactional(readOnly = true)
 	public MeResponse me(UserPrincipal principal) {
-		User user = userRepository.findById(principal.getId())
+		return toMe(requireUser(principal));
+	}
+
+	@Transactional
+	public MeResponse patchMe(UserPrincipal principal, PatchMeRequest request) {
+		User user = requireUser(principal);
+		if (request.email() != null && !request.email().isBlank()) {
+			String email = request.email().trim();
+			userRepository.findByEmailIgnoreCase(email)
+					.filter(existing -> !existing.getId().equals(user.getId()))
+					.ifPresent(existing -> {
+						throw new ApiException(ErrorCode.CONFLICT, "A user with that email already exists.");
+					});
+			user.setEmail(email);
+		}
+		if (request.phone() != null && !request.phone().isBlank()) {
+			String e164;
+			try {
+				e164 = PhoneNumbers.requireE164(request.phone());
+			} catch (IllegalArgumentException ex) {
+				throw new ApiException(ErrorCode.VALIDATION_ERROR, "phone must be E.164");
+			}
+			userRepository.findByPhone(e164)
+					.filter(existing -> !existing.getId().equals(user.getId()))
+					.ifPresent(existing -> {
+						throw new ApiException(ErrorCode.CONFLICT, "A user with that phone already exists.");
+					});
+			user.setPhone(e164);
+		}
+		return toMe(user);
+	}
+
+	@Transactional
+	public void changePassword(UserPrincipal principal, String currentPassword, String newPassword) {
+		User user = requireUser(principal);
+		try {
+			if (user.getPasswordHash() == null || !passwordEncoder.matches(currentPassword, user.getPasswordHash())) {
+				throw new ApiException(ErrorCode.VALIDATION_ERROR, "Current password is incorrect.");
+			}
+		} catch (IllegalArgumentException ex) {
+			throw new ApiException(ErrorCode.VALIDATION_ERROR, "Current password is incorrect.");
+		}
+		if (passwordEncoder.matches(newPassword, user.getPasswordHash())) {
+			throw new ApiException(ErrorCode.VALIDATION_ERROR, "Choose a different password.");
+		}
+		user.setPasswordHash(passwordEncoder.encode(newPassword));
+	}
+
+	private User requireUser(UserPrincipal principal) {
+		return userRepository.findById(principal.getId())
 				.orElseThrow(() -> new ApiException(ErrorCode.UNAUTHENTICATED));
+	}
+
+	private MeResponse toMe(User user) {
 		List<String> roles = user.getRoles().stream().map(Role::getName).map(Enum::name).toList();
 		MeResponse.WaitingListSummary waiting = waitingListRepository.findByUserId(user.getId())
 				.map(entry -> new MeResponse.WaitingListSummary(entry.getStatus().name(), entry.getCreatedAt()))

@@ -85,6 +85,7 @@ export const pageMeta: { prefix: string; title: string; kicker: string }[] = [
   { prefix: "/whatsapp", title: "WhatsApp", kicker: "Platform" },
   { prefix: "/notifications", title: "Notifications", kicker: "Platform" },
   { prefix: "/audit", title: "Audit", kicker: "Platform" },
+  { prefix: "/profile", title: "Profile", kicker: "Account" },
   { prefix: "/settings", title: "Settings", kicker: "Platform" },
 ];
 

@@ -1,10 +1,12 @@
 package com.farmitai.farmitai_backend.domain.auth;
 
 import com.farmitai.farmitai_backend.common.dto.ApiResponse;
+import com.farmitai.farmitai_backend.domain.auth.dto.ChangePasswordRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.ForgotPasswordResponse;
 import com.farmitai.farmitai_backend.domain.auth.dto.LoginRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.MeResponse;
+import com.farmitai.farmitai_backend.domain.auth.dto.PatchMeRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.RegisterRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequest;
 import com.farmitai.farmitai_backend.domain.auth.dto.OtpRequestResponse;
@@ -17,6 +19,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,5 +84,22 @@ public class AuthController {
 	@SecurityRequirement(name = "bearer-jwt")
 	public ApiResponse<MeResponse> me(@AuthenticationPrincipal UserPrincipal principal) {
 		return ApiResponse.ok(authService.me(principal));
+	}
+
+	@PatchMapping("/me")
+	@SecurityRequirement(name = "bearer-jwt")
+	public ApiResponse<MeResponse> patchMe(
+			@Valid @RequestBody PatchMeRequest request,
+			@AuthenticationPrincipal UserPrincipal principal) {
+		return ApiResponse.ok(authService.patchMe(principal, request));
+	}
+
+	@PostMapping("/change-password")
+	@SecurityRequirement(name = "bearer-jwt")
+	public ApiResponse<Void> changePassword(
+			@Valid @RequestBody ChangePasswordRequest request,
+			@AuthenticationPrincipal UserPrincipal principal) {
+		authService.changePassword(principal, request.currentPassword(), request.newPassword());
+		return ApiResponse.empty();
 	}
 }
