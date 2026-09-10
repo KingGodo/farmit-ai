@@ -17,3 +17,13 @@ export function displayNameFromEmail(email: string | null | undefined) {
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
 }
+
+export function displayRole(roles: string[] | null | undefined) {
+  if (!roles?.length) return "Admin";
+  const preferred = roles.find((role) => role === "ADMIN") ?? roles[0];
+  return preferred
+    .toLowerCase()
+    .split("_")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}

@@ -1,22 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { CircleUser, LogOut, User } from "lucide-react";
+import { ChevronDown, CircleUser, LogOut, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { displayNameFromEmail } from "@/lib/user";
+import { displayNameFromEmail, displayRole } from "@/lib/user";
 import { cn } from "@/lib/utils";
 
 export function UserMenu({
   email,
+  roles,
   onSignOut,
 }: {
   email: string | null | undefined;
+  roles?: string[];
   onSignOut: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const name = displayNameFromEmail(email);
+  const role = displayRole(roles);
 
   useEffect(() => {
     const onPointer = (event: MouseEvent) => {
@@ -42,11 +45,24 @@ export function UserMenu({
         aria-haspopup="menu"
         aria-label="Open profile menu"
         className={cn(
-          "flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors duration-150 ease-[var(--ease-craft)] hover:bg-muted hover:text-foreground",
-          open && "bg-muted text-foreground"
+          "flex h-8 max-w-[220px] items-center gap-2 rounded-lg px-1.5 text-left transition-colors duration-150 ease-[var(--ease-craft)] hover:bg-muted",
+          open && "bg-muted"
         )}
       >
-        <CircleUser className="size-5" strokeWidth={1.75} />
+        <CircleUser className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.75} />
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-[12px] font-medium leading-4 tracking-[-0.02em]">
+            {name}
+          </span>
+          <span className="block truncate text-[11px] leading-4 text-muted-foreground">{role}</span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "size-3.5 shrink-0 text-faint transition-transform duration-150 ease-[var(--ease-craft)]",
+            open && "rotate-180"
+          )}
+          strokeWidth={2}
+        />
       </button>
       {open && (
         <div

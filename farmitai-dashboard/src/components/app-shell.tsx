@@ -64,7 +64,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
           <HeaderSearch />
           <div className="hidden h-5 w-px bg-border sm:block" />
-          <UserMenu email={me.data?.email} onSignOut={logout} />
+          <UserMenu email={me.data?.email} roles={me.data?.roles} onSignOut={logout} />
         </header>
 
         <main className="flex-1 px-4 py-6 md:px-6">{children}</main>
