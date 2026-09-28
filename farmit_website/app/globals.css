@@ -80,18 +80,14 @@
     /* Prevent mobile browsers from inflating text/rem (padding) vs desktop */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* Slightly denser base for a more professional scale */
     font-size: 14.5px;
-    height: 100%;
-    min-height: 100%;
-    min-height: var(--app-height, 100dvh);
   }
 
   body {
     @apply bg-background text-foreground font-sans text-base antialiased;
     font-size: 1rem;
     line-height: 1.55;
-    min-height: 100%;
-    min-height: var(--app-height, 100dvh);
   }
 
   ::selection {
@@ -102,73 +98,7 @@
 
 /* Shared landing layout: balanced side padding, tighter content width */
 @utility page-container {
-  @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10 xl:max-w-7xl 2xl:max-w-[90rem];
-}
-
-.landing-hero {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: var(--app-height, 100dvh);
-  height: 100vh;
-  height: 100dvh;
-  height: var(--app-height, 100dvh);
-  overflow: hidden;
-  color: #fff;
-  background-color: var(--forest-deep);
-  background-image: url("/images/farmit-hero-field.jpg");
-  background-repeat: no-repeat;
-  background-position: center 40%;
-  background-size: cover;
-}
-
-.landing-hero-shade {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      color-mix(in oklab, var(--forest-deep) 88%, transparent) 0%,
-      color-mix(in oklab, var(--forest-deep) 42%, transparent) 48%,
-      transparent 78%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--forest-deep) 28%, transparent) 0%,
-      transparent 42%,
-      color-mix(in oklab, var(--forest-deep) 72%, transparent) 100%
-    );
-}
-
-.landing-hero-copy {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  padding-top: 5.5rem;
-  padding-bottom: 2.25rem;
-}
-
-.landing-hero-title {
-  max-width: 14ch;
-  font-size: clamp(1.5rem, 3.8vw, 2.35rem);
-  font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
-}
-
-@media (min-width: 1920px) {
-  .landing-hero-title {
-    font-size: clamp(2rem, 3vw, 3rem);
-  }
+  @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
 }
 
 @utility section-heading {

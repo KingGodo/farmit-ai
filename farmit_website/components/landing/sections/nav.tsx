@@ -75,7 +75,7 @@ export default function Navbar() {
 
   const linkClass = (href: string) => {
     const isActive = isHome && active === href;
-    return `inline-flex h-8 items-center rounded-md px-3 text-[13px] font-medium leading-none transition-[color,background-color] duration-150 ease-[var(--ease-craft)] ${
+    return `rounded-md px-3 py-1.5 text-[13px] font-medium transition-[color,background-color] duration-150 ease-[var(--ease-craft)] ${
       isActive
         ? "bg-lime text-ink"
         : solid
@@ -97,13 +97,13 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full transition-[background-color,border-color,color,backdrop-filter] duration-200 ease-[var(--ease-craft)] ${
+      className={`fixed top-0 z-50 w-full pt-3 transition-[background-color,border-color,color,backdrop-filter] duration-200 ease-[var(--ease-craft)] sm:pt-4 ${
         solid
           ? "border-b border-border bg-background/90 text-ink backdrop-blur-xl"
           : "border-b border-transparent bg-transparent text-white"
       }`}
     >
-      <div className="page-container relative flex h-14 items-center justify-between overflow-hidden">
+      <div className="page-container relative flex h-12 items-center justify-between sm:h-14">
         <Link
           href="/"
           onClick={() => setOpen(false)}
@@ -123,10 +123,10 @@ export default function Navbar() {
         </Link>
 
         <div
-          className={`absolute left-1/2 top-1/2 hidden h-9 -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 lg:flex ${
+          className={`absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 lg:flex ${
             solid
               ? ""
-              : "rounded-md border border-white/15 bg-black/35 px-1 backdrop-blur-md"
+              : "rounded-lg border border-white/15 bg-black/35 px-1.5 py-1 backdrop-blur-md"
           }`}
         >
           {NAV_ITEMS.map((item) =>

@@ -1,19 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 
 export default function Hero() {
   return (
-    <section className="landing-hero">
-      <div className="landing-hero-shade" aria-hidden />
+    <section className="relative flex min-h-[88svh] flex-col overflow-hidden text-white lg:min-h-[100dvh]">
+      <div className="absolute inset-0 bg-forest-deep">
+        <Image
+          src="/images/farmit-hero-field.jpg"
+          alt="Farmer working in a green field at golden hour"
+          fill
+          priority
+          className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />
+      </div>
 
-      <div className="page-container landing-hero-copy">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(16rem,20rem)] lg:gap-12">
+      <div className="page-container relative flex w-full flex-1 flex-col justify-end pb-10 pt-32 sm:pb-14 sm:pt-36 lg:pb-16">
+        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
           <div className="max-w-xl">
             <p className="animate-rise inline-flex items-center rounded-md border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold tracking-[0.04em] text-white/95 backdrop-blur-sm">
               FarmIt AI · Farming for Zimbabwe
             </p>
-            <h1 className="animate-rise-delay landing-hero-title mt-4 text-white">
+            <h1 className="animate-rise-delay mt-4 text-[clamp(1.5rem,3.8vw,2.35rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-white">
               Crop advice on your WhatsApp.
             </h1>
             <p className="animate-rise-delay-2 mt-3 max-w-md text-sm leading-relaxed text-white/85 sm:text-[15px]">
@@ -37,7 +49,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <aside className="animate-rise-delay-3 w-full rounded-xl border border-white/15 bg-black/35 p-5 backdrop-blur-md sm:p-6">
+          <aside className="animate-rise-delay-3 w-full max-w-sm justify-self-start rounded-xl border border-white/15 bg-black/35 p-5 backdrop-blur-md sm:p-6 lg:justify-self-end">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-lime">
               Our Mission
             </p>
