@@ -15,21 +15,23 @@ export default function Hero() {
           className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/92 via-forest-deep/55 to-forest-deep/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/88 via-forest-deep/30 to-forest-deep/40" />
         <div className="hero-screen-shade" aria-hidden />
       </div>
 
       <div className="page-container relative flex w-full flex-1 flex-col justify-end pb-10 pt-32 sm:pb-14 sm:pt-36 lg:pb-16">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
-          <div className="max-w-xl">
+          <div className="relative max-w-xl">
+            <div className="hero-copy-shade" aria-hidden />
+            <div className="relative">
             <p className="animate-rise inline-flex items-center rounded-md border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold tracking-[0.04em] text-white/95 backdrop-blur-sm">
               FarmIt AI · Farming for Zimbabwe
             </p>
-            <h1 className="animate-rise-delay mt-4 text-[clamp(1.5rem,3.8vw,2.35rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-white">
+            <h1 className="animate-rise-delay mt-4 text-[clamp(1.5rem,3.8vw,2.35rem)] font-extrabold leading-[1.12] tracking-[-0.03em] text-white [text-shadow:0_2px_18px_rgba(14,36,28,0.9)]">
               Crop advice on your WhatsApp.
             </h1>
-            <p className="animate-rise-delay-2 mt-3 max-w-md text-sm leading-relaxed text-white/85 sm:text-[15px]">
+            <p className="animate-rise-delay-2 mt-3 max-w-md text-sm leading-relaxed text-white/95 sm:text-[15px] [text-shadow:0_1px_12px_rgba(14,36,28,0.85)]">
               Diagnose maize diseases from a leaf photo and get clear treatment
               steps. Join the waiting list on this website, not WhatsApp.
             </p>
@@ -47,6 +49,7 @@ export default function Hero() {
               >
                 See how it works
               </a>
+            </div>
             </div>
           </div>
 

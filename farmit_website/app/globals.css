@@ -101,25 +101,47 @@
   @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
 }
 
-/* Extra green wash on large displays so the hero stays readable. */
+/* Green wash so hero copy stays readable on bright field photos. */
 .hero-screen-shade {
-  display: none;
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: color-mix(in oklab, var(--forest-deep) 28%, transparent);
 }
 
-@media (min-width: 1500px) {
+.hero-copy-shade {
+  position: absolute;
+  inset: -1.25rem -1.75rem -2rem -1.5rem;
+  border-radius: 1.25rem;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--forest-deep) 82%, transparent) 0%,
+    color-mix(in oklab, var(--forest-deep) 58%, transparent) 55%,
+    color-mix(in oklab, var(--forest-deep) 22%, transparent) 100%
+  );
+}
+
+@media (min-width: 1024px) {
   .hero-screen-shade {
-    display: block;
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
     background:
-      color-mix(in oklab, var(--forest) 46%, transparent),
+      color-mix(in oklab, var(--forest-deep) 48%, transparent),
       linear-gradient(
         90deg,
-        color-mix(in oklab, var(--forest-deep) 58%, transparent) 0%,
-        color-mix(in oklab, var(--forest) 28%, transparent) 55%,
-        color-mix(in oklab, var(--forest) 22%, transparent) 100%
+        color-mix(in oklab, var(--forest-deep) 72%, transparent) 0%,
+        color-mix(in oklab, var(--forest) 36%, transparent) 50%,
+        color-mix(in oklab, var(--forest-deep) 30%, transparent) 100%
       );
+  }
+
+  .hero-copy-shade {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--forest-deep) 88%, transparent) 0%,
+      color-mix(in oklab, var(--forest-deep) 62%, transparent) 60%,
+      color-mix(in oklab, var(--forest-deep) 28%, transparent) 100%
+    );
   }
 }
 
