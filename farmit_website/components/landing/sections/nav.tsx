@@ -75,7 +75,7 @@ export default function Navbar() {
 
   const linkClass = (href: string) => {
     const isActive = isHome && active === href;
-    return `rounded-md px-3 py-1.5 text-[13px] font-medium transition-[color,background-color] duration-150 ease-[var(--ease-craft)] ${
+    return `inline-flex h-8 shrink-0 items-center whitespace-nowrap rounded-md px-2.5 text-[13px] font-medium leading-none transition-[color,background-color] duration-150 ease-[var(--ease-craft)] xl:px-3 ${
       isActive
         ? "bg-lime text-ink"
         : solid
@@ -103,11 +103,11 @@ export default function Navbar() {
           : "border-b border-transparent bg-transparent text-white"
       }`}
     >
-      <div className="page-container relative flex h-12 items-center justify-between sm:h-14">
+      <div className="page-container grid h-12 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 sm:h-14">
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="relative z-10 flex items-center gap-1"
+          className="relative z-10 flex shrink-0 items-center gap-1"
         >
           <Image
             src={logo}
@@ -119,60 +119,63 @@ export default function Navbar() {
             className="object-contain"
             priority
           />
-          <span className="text-[15px] font-bold tracking-tight">{site.name}</span>
+          <span className="whitespace-nowrap text-[15px] font-bold tracking-tight">
+            {site.name}
+          </span>
         </Link>
 
-        <div
-          className={`absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 lg:flex ${
-            solid
-              ? ""
-              : "rounded-lg border border-white/15 bg-black/35 px-1.5 py-1 backdrop-blur-md"
-          }`}
-        >
-          {NAV_ITEMS.map((item) =>
-            isHome ? (
-              <button
-                key={item.href}
-                type="button"
-                onClick={() => go(item.href)}
-                aria-current={active === item.href ? "page" : undefined}
-                className={linkClass(item.href)}
-              >
-                {item.label}
-              </button>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href === "top" ? "/" : `/#${item.href}`}
-                className={linkClass(item.href)}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
+        <div className="hidden min-w-0 justify-center lg:flex">
+          <div
+            className={`flex h-9 max-w-full items-center gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+              solid
+                ? ""
+                : "rounded-lg border border-white/15 bg-black/35 px-1.5 backdrop-blur-md"
+            }`}
+          >
+            {NAV_ITEMS.map((item) =>
+              isHome ? (
+                <button
+                  key={item.href}
+                  type="button"
+                  onClick={() => go(item.href)}
+                  aria-current={active === item.href ? "page" : undefined}
+                  className={linkClass(item.href)}
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href === "top" ? "/" : `/#${item.href}`}
+                  className={linkClass(item.href)}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
+          </div>
         </div>
 
-        <div className="relative z-10 hidden items-center gap-3 md:flex">
+        <div className="flex shrink-0 items-center justify-end">
           <Link
             href={site.waitlistPath}
-            className="inline-flex h-9 items-center rounded-lg bg-lime px-4 text-[13px] font-semibold text-ink transition-[background-color] duration-150 ease-[var(--ease-craft)] hover:bg-lime-dark"
+            className="hidden h-9 items-center whitespace-nowrap rounded-lg bg-lime px-4 text-[13px] font-semibold text-ink transition-[background-color] duration-150 ease-[var(--ease-craft)] hover:bg-lime-dark lg:inline-flex"
           >
             Join the waiting list
           </Link>
+          <button
+            type="button"
+            className="rounded-md p-2 lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="relative z-10 rounded-md p-2 md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </div>
 
       {open && (
-        <div className="border-t border-border px-6 pb-5 sm:px-8 md:hidden">
+        <div className="border-t border-border px-6 pb-5 sm:px-8 lg:hidden">
           <div className="flex flex-col gap-0.5 pt-2">
             {NAV_ITEMS.map((item) =>
               isHome ? (
