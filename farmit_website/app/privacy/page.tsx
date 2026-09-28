@@ -4,7 +4,7 @@ import LegalLayout, { LegalSection } from "@/components/landing/LegalLayout";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Privacy Policy — ${site.name}`,
+  title: `Privacy Policy | ${site.name}`,
   description:
     "How FarmIt AI collects and uses personal information from the waiting list and the FarmIt service.",
 };
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
       <LegalSection title="How long we keep it">
         <p>
           We keep waiting-list details until you ask us to delete them, or
-          until they are no longer needed to provide FarmIt — whichever comes
+          until they are no longer needed to provide FarmIt, whichever comes
           first. If you become a registered user, that account will follow the
           policy in force at that time.
         </p>

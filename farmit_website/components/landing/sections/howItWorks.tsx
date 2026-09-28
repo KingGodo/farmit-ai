@@ -14,7 +14,7 @@ const steps = [
     step: "02",
     title: "We contact you",
     description:
-      "When your district opens, we reach you by phone or email — not through a WhatsApp signup chat.",
+      "When your district opens, we reach you by phone or email, not through a WhatsApp signup chat.",
   },
   {
     step: "03",

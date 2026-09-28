@@ -6,7 +6,7 @@ import WaitlistForm from "@/components/landing/WaitlistForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Join the waiting list — ${site.name}`,
+  title: `Join the waiting list | ${site.name}`,
   description:
     "Join the FarmIt waiting list on this website. Share your details and we will contact you.",
 };
@@ -68,7 +68,7 @@ export default function WaitlistPage() {
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               FarmIt serves farmers in Zimbabwe. The waiting list is only on
-              this website — not WhatsApp. Leave your district and crop. We’ll
+              this website, not WhatsApp. Leave your district and crop. We’ll
               contact you by phone or email.
             </p>
 

@@ -27,7 +27,7 @@ const SCRIPT: Turn[] = [
   { from: "user", text: "Hie. Yellow spots on my maize leaves." },
   {
     from: "bot",
-    text: "Hi. I am **FarmIt**, your farming assistant for Zimbabwe.\n\nSend a clear photo of the affected leaf — front and back if you can.",
+    text: "Hi. I am **FarmIt**, your farming assistant for Zimbabwe.\n\nSend a clear photo of the affected leaf. Front and back if you can.",
   },
   { from: "user", text: "Sent the photo." },
   {

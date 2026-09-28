@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: `${site.name} — Crop advice on WhatsApp`,
+  title: `${site.name} | Crop advice on WhatsApp`,
   description: site.description,
   icons: {
     icon: [

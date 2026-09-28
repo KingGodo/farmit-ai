@@ -4,7 +4,7 @@ import LegalLayout, { LegalSection } from "@/components/landing/LegalLayout";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Terms of Use — ${site.name}`,
+  title: `Terms of Use | ${site.name}`,
   description:
     "Terms for using the FarmIt AI website and joining the waiting list.",
 };

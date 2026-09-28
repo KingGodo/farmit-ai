@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     quote:
-      "WhatsApp is already on my phone. FarmIt AI felt easy — no new app, no confusing screens. Just a chat that helps protect my crop.",
+      "WhatsApp is already on my phone. FarmIt AI felt easy. No new app, no confusing screens. Just a chat that helps protect my crop.",
     name: "Chiedza Ncube",
     place: "Gweru Rural",
     role: "Maize grower",
@@ -41,7 +41,7 @@ const testimonials = [
   },
   {
     quote:
-      "My mother and I both use it. The advice is plain and practical — not full of complicated words.",
+      "My mother and I both use it. The advice is plain and practical, not full of complicated words.",
     name: "Nyasha Mhlanga",
     place: "Chinhoyi",
     role: "Family farm",

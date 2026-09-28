@@ -1,9 +1,9 @@
-/** Public site config — set NEXT_PUBLIC_WHATSAPP_NUMBER to your business number (digits only, country code, e.g. 2637XXXXXXXX). */
+/** Public site config. Set NEXT_PUBLIC_WHATSAPP_NUMBER to digits only with country code, e.g. 2637XXXXXXXX. */
 const whatsappNumber =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "";
 
 const defaultMessage = encodeURIComponent(
-  "Hello FarmIt AI — I would like farming advice."
+  "Hello FarmIt AI. I would like farming advice."
 );
 
 export const site = {

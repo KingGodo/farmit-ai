@@ -26,7 +26,7 @@ export default function CTA() {
               Join the waiting list on this website.
             </h2>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75">
-              Share your name, phone, email, district, and crop here — not on
+              Share your name, phone, email, district, and crop here, not on
               WhatsApp. We’ll contact you to complete registration.
             </p>
           </div>

@@ -11,7 +11,7 @@ const pillars = [
     icon: Leaf,
     title: "Maize disease focus",
     detail:
-      "Detects blight, gray leaf spot, and rust — and confirms when a crop looks healthy.",
+      "Detects blight, gray leaf spot, and rust, and confirms when a crop looks healthy.",
   },
   {
     icon: Sprout,
@@ -44,7 +44,7 @@ export default function Stats() {
           </div>
           <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
             FarmIt AI helps Zimbabwean farmers cut crop losses with faster
-            advice — before disease spreads.
+            advice, before disease spreads.
           </p>
         </div>
 
