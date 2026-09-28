@@ -101,24 +101,24 @@
   @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
 }
 
-/* Extra forest wash on large presentation displays only. */
+/* Extra green wash on large displays so the hero stays readable. */
 .hero-screen-shade {
   display: none;
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1500px) {
   .hero-screen-shade {
     display: block;
     position: absolute;
     inset: 0;
     pointer-events: none;
     background:
-      color-mix(in oklab, var(--forest-deep) 32%, transparent),
+      color-mix(in oklab, var(--forest) 46%, transparent),
       linear-gradient(
         90deg,
-        color-mix(in oklab, var(--forest-deep) 70%, transparent) 0%,
-        color-mix(in oklab, var(--forest-deep) 36%, transparent) 48%,
-        color-mix(in oklab, var(--forest-deep) 18%, transparent) 100%
+        color-mix(in oklab, var(--forest-deep) 58%, transparent) 0%,
+        color-mix(in oklab, var(--forest) 28%, transparent) 55%,
+        color-mix(in oklab, var(--forest) 22%, transparent) 100%
       );
   }
 }
