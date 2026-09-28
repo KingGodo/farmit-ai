@@ -5,22 +5,22 @@ import { site } from "@/lib/site";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[88svh] flex-col overflow-hidden text-white lg:min-h-[100dvh]">
+    <section className="relative flex h-svh min-h-svh w-full flex-col overflow-hidden text-white">
       <div className="absolute inset-0 bg-forest-deep">
         <Image
           src="/images/farmit-hero-field.jpg"
           alt="Farmer working in a green field at golden hour"
           fill
           priority
-          className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
+          className="object-cover object-[center_42%] sm:object-[center_40%] lg:object-center"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />
       </div>
 
-      <div className="page-container relative flex w-full flex-1 flex-col justify-end pb-10 pt-32 sm:pb-14 sm:pt-36 lg:pb-16">
-        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
+      <div className="page-container relative flex h-full w-full flex-1 flex-col justify-center pb-10 pt-24 sm:pb-14 sm:pt-28 lg:pb-16">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
           <div className="max-w-xl">
             <p className="animate-rise inline-flex items-center rounded-md border border-white/15 bg-white/12 px-3 py-1 text-[11px] font-semibold tracking-[0.04em] text-white/95 backdrop-blur-sm">
               FarmIt AI · Farming for Zimbabwe

@@ -82,12 +82,14 @@
     text-size-adjust: 100%;
     /* Slightly denser base for a more professional scale */
     font-size: 14.5px;
+    min-height: 100svh;
   }
 
   body {
     @apply bg-background text-foreground font-sans text-base antialiased;
     font-size: 1rem;
     line-height: 1.55;
+    min-height: 100svh;
   }
 
   ::selection {
