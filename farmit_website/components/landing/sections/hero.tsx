@@ -17,6 +17,7 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />
+        <div className="hero-screen-shade" aria-hidden />
       </div>
 
       <div className="page-container relative flex w-full flex-1 flex-col justify-end pb-10 pt-32 sm:pb-14 sm:pt-36 lg:pb-16">
