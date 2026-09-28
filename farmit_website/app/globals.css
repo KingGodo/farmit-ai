@@ -80,9 +80,10 @@
     /* Prevent mobile browsers from inflating text/rem (padding) vs desktop */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    font-size: 16px;
+    font-size: 14.5px;
+    height: 100%;
     min-height: 100%;
-    min-height: 100svh;
+    min-height: var(--app-height, 100dvh);
   }
 
   body {
@@ -90,7 +91,7 @@
     font-size: 1rem;
     line-height: 1.55;
     min-height: 100%;
-    min-height: 100svh;
+    min-height: var(--app-height, 100dvh);
   }
 
   ::selection {
@@ -108,11 +109,14 @@
   position: relative;
   isolation: isolate;
   display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100dvh;
+  min-height: var(--app-height, 100dvh);
   height: 100vh;
   height: 100dvh;
+  height: var(--app-height, 100dvh);
   overflow: hidden;
   color: #fff;
   background-color: var(--forest-deep);
@@ -149,31 +153,26 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding-top: 6.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 5.5rem;
+  padding-bottom: 2.25rem;
 }
 
 .landing-hero-title {
-  max-width: 13ch;
-  font-size: clamp(2.5rem, 6vw, 5.25rem);
+  max-width: 14ch;
+  font-size: clamp(1.5rem, 3.8vw, 2.35rem);
   font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
 }
 
-@media (min-width: 1440px) {
-  .landing-hero-copy {
-    padding-top: 7rem;
-    padding-bottom: 3.5rem;
-  }
-
+@media (min-width: 1920px) {
   .landing-hero-title {
-    font-size: clamp(3.5rem, 4.6vw, 5.75rem);
+    font-size: clamp(2rem, 3vw, 3rem);
   }
 }
 
 @utility section-heading {
-  @apply text-[1.35rem] font-bold tracking-[-0.02em] sm:text-2xl lg:text-[1.85rem] lg:leading-[1.2] xl:text-[2.35rem];
+  @apply text-[1.35rem] font-bold tracking-[-0.02em] sm:text-2xl lg:text-[1.85rem] lg:leading-[1.2];
 }
 
 @keyframes rise-in {
