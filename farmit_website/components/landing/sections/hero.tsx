@@ -12,11 +12,11 @@ export default function Hero() {
           alt="Farmer working in a green field at golden hour"
           fill
           priority
-          className="object-cover object-[72%_4%] sm:object-[68%_8%] md:object-[62%_14%] lg:object-[58%_18%]"
+          className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/88 via-forest-deep/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/75 via-transparent to-forest-deep/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/70 via-forest-deep/28 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-transparent to-forest-deep/20" />
         <div className="hero-screen-shade" aria-hidden />
       </div>
 

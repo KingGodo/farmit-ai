@@ -101,18 +101,18 @@
   @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-10;
 }
 
-/* Dark forest overlay over the hero photo so white copy stays readable. */
+/* Light green wash over the hero photo. */
 .hero-screen-shade {
   display: block;
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: color-mix(in oklab, var(--forest-deep) 42%, transparent);
+  background: color-mix(in oklab, var(--forest) 22%, transparent);
 }
 
 @media (min-width: 1024px) {
   .hero-screen-shade {
-    background: color-mix(in oklab, var(--forest-deep) 72%, transparent);
+    background: color-mix(in oklab, var(--forest) 28%, transparent);
   }
 }
 
